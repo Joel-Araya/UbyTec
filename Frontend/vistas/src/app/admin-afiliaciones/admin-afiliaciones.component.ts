@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
+import { SolicitudService } from '../servicios/solicitud.service';
 
 @Component({
   selector: 'app-admin-afiliaciones',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminAfiliacionesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private solicitud:SolicitudService) { }
+
+  public listaNot:Array<any>=[]
 
   ngOnInit(): void {
+    this.solicitud.disparador.subscribe(data => {
+      console.log("Recibiendo..",data);
+      this.listaNot.push(data);
+    })
   }
 
 }

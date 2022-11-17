@@ -14,6 +14,17 @@ import { AdminComercioAfiliadoComponent } from './admin-comercio-afiliado/admin-
 import { AdminAfiliacionesComponent } from './admin-afiliaciones/admin-afiliaciones.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { SolicitudAfiliacionComponent } from './solicitud-afiliacion/solicitud-afiliacion.component';
+import { ProductosComponent } from './productos/productos.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { AsignacionPedidosComponent } from './asignacion-pedidos/asignacion-pedidos.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { CrearClienteComponent } from './crear-cliente/crear-cliente.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarritoComponent } from './carrito/carrito.component';
+
 
 
 
@@ -26,7 +37,16 @@ const appRoutes:Routes=[
   {path: 'afiliados', component:AfiliadosComponent},
   {path: 'repartidores', component:RepartidoresComponent},
   {path: 'comercioAfiliado', component:AdminComercioAfiliadoComponent},
-  {path: 'adminAfiliaciones', component:AdminAfiliacionesComponent}
+  {path: 'adminAfiliaciones', component:AdminAfiliacionesComponent},
+  {path: 'solicitud', component:SolicitudAfiliacionComponent},
+  {path: 'productos', component:ProductosComponent},
+  {path: 'pedidos', component:PedidosComponent},
+  {path: 'asignacion', component:AsignacionPedidosComponent},
+  {path: 'cliente', component:ClienteComponent},
+  {path: 'crearCuenta', component:CrearCuentaComponent},
+  {path: 'feedback', component:FeedbackComponent},
+  {path: 'crearCuentaCliente', component:CrearClienteComponent},
+
 ]
 
 @NgModule({
@@ -38,11 +58,21 @@ const appRoutes:Routes=[
     AdminComercioAfiliadoComponent,
     AdminAfiliacionesComponent,
     LoginComponent,
+    SolicitudAfiliacionComponent,
+    ProductosComponent,
+    PedidosComponent,
+    AsignacionPedidosComponent,
+    ClienteComponent,
+    CrearCuentaComponent,
+    FeedbackComponent,
+    CrearClienteComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
