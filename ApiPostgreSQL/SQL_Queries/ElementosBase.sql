@@ -47,28 +47,28 @@ Insert into administrador_afiliado values ('admin14', 'admin14@gmail.com', 'Hell
 
 
 
-Insert into repartidor values ('Rep01','Rep01@gmail.com', 'HolaMundo01', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep02','Rep02@gmail.com', 'HolaMundo02', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep03','Rep03@gmail.com', 'HolaMundo03', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep04','Rep04@gmail.com', 'HolaMundo04', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep05','Rep05@gmail.com', 'HolaMundo05', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep06','Rep06@gmail.com', 'HolaMundo06', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep07','Rep07@gmail.com', 'HolaMundo07', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep08','Rep08@gmail.com', 'HolaMundo08', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep09','Rep09@gmail.com', 'HolaMundo09', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep10','Rep10@gmail.com', 'HolaMundo10', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep11','Rep11@gmail.com', 'HolaMundo11', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep12','Rep12@gmail.com', 'HolaMundo12', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep13','Rep13@gmail.com', 'HolaMundo13', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
-Insert into repartidor values ('Rep14','Rep14@gmail.com', 'HolaMundo14', 'Rep', 'Cartago', 'El Guarco', 'Tejar');
+Insert into repartidor values ('Rep01','Rep01@gmail.com', 'HolaMundo01', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep02','Rep02@gmail.com', 'HolaMundo02', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep03','Rep03@gmail.com', 'HolaMundo03', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep04','Rep04@gmail.com', 'HolaMundo04', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep05','Rep05@gmail.com', 'HolaMundo05', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep06','Rep06@gmail.com', 'HolaMundo06', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep07','Rep07@gmail.com', 'HolaMundo07', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep08','Rep08@gmail.com', 'HolaMundo08', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep09','Rep09@gmail.com', 'HolaMundo09', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep10','Rep10@gmail.com', 'HolaMundo10', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep11','Rep11@gmail.com', 'HolaMundo11', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep12','Rep12@gmail.com', 'HolaMundo12', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep13','Rep13@gmail.com', 'HolaMundo13', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible');
+Insert into repartidor values ('Rep14','Rep14@gmail.com', 'HolaMundo14', 'Rep', 'Cartago', 'El Guarco', 'Tejar', 'Disponible'));
 
 
-Insert into pedido(direccion, c_cedula, re_usuario) values ('Cartago',   2, 'Rep09');
-Insert into pedido(direccion, c_cedula, re_usuario) values ('San Jose',  5, 'Rep04');
-Insert into pedido(direccion, c_cedula, re_usuario) values ('Limon',     4, 'Rep01');
-Insert into pedido(direccion, c_cedula, re_usuario) values ('Alajuela',  8, 'Rep06');
-Insert into pedido(direccion, c_cedula, re_usuario) values ('Heredia',   1, 'Rep03');
-Insert into pedido(direccion, c_cedula, re_usuario) values ('Puntarenas',7, 'Rep01');
+Insert into pedido(direccion, c_cedula, re_usuario) values ('Cartago',   2, 'Rep09', 'Preparando');
+Insert into pedido(direccion, c_cedula, re_usuario) values ('San Jose',  5, 'Rep04', 'Preparando');
+Insert into pedido(direccion, c_cedula, re_usuario) values ('Limon',     4, 'Rep01', 'Preparando');
+Insert into pedido(direccion, c_cedula, re_usuario) values ('Alajuela',  8, 'Rep06', 'Preparando');
+Insert into pedido(direccion, c_cedula, re_usuario) values ('Heredia',   1, 'Rep03', 'Preparando');
+Insert into pedido(direccion, c_cedula, re_usuario) values ('Puntarenas',7, 'Rep01', 'Preparando');
 
 
 

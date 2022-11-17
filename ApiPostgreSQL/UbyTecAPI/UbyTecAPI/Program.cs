@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using UbyTecAPI;
 using UbyTecAPI.Data;
 using UbyTecAPI.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -10,17 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
 builder.Services.AddDbContext<UbyTecDb>(options => options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+/*// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+*/
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
@@ -122,6 +128,10 @@ var aministradoresAfiliadosItems = app.MapGroup("/Administradores_Afiliados");
 
 aministradoresAfiliadosItems.MapPost("/", async (AdministradorAfiliado a, UbyTecDb db) =>
 {
+    EmailPasswordManager managerEmail = new EmailPasswordManager();
+    a.password = managerEmail.GeneratePassword();
+    managerEmail.EmailSend(a.correo, a.password);
+
     db.administrador_afiliado.Add(a);
     await db.SaveChangesAsync();
     return Results.Created($"administrador_afiliado/{a.usuario}", a);
@@ -186,7 +196,6 @@ comerciosAfiliadosItems.MapPut("/{cedula:int}", async (int cedula, ComercioAfili
     if (comercio_afiliado is null) return Results.NotFound();
 
     comercio_afiliado.tipo_comercio = c.tipo_comercio;
-    comercio_afiliado.password = c.password;
     comercio_afiliado.nombre_comercio = c.nombre_comercio;
     comercio_afiliado.num_sinpe= c.num_sinpe;
     comercio_afiliado.administrador_comercio=c.administrador_comercio;
@@ -195,6 +204,7 @@ comerciosAfiliadosItems.MapPut("/{cedula:int}", async (int cedula, ComercioAfili
     comercio_afiliado.canton = c.canton;
     comercio_afiliado.distrito = c.distrito;
     comercio_afiliado.a_usuario = c.a_usuario;
+    comercio_afiliado.estado= c.estado;
 
     await db.SaveChangesAsync();
     return Results.Ok(comercio_afiliado);
@@ -234,6 +244,7 @@ pedidosItems.MapPut("/{comprobante:int}", async (int comprobante, Pedido p, UbyT
     if (pedido is null) return Results.NotFound();
 
     pedido.direccion = p.direccion;
+    pedido.estado = p.estado;
     pedido.c_cedula = p.c_cedula;
     pedido.re_usuario = p.re_usuario;
 
@@ -243,9 +254,9 @@ pedidosItems.MapPut("/{comprobante:int}", async (int comprobante, Pedido p, UbyT
 
 pedidosItems.MapDelete("/{comprobante:int}", async (int comprobante, UbyTecDb db) =>
 {
-    var administrador_afiliado = await db.administrador_afiliado.FindAsync(comprobante);
-    if (administrador_afiliado is null) return Results.NotFound();
-    db.administrador_afiliado.Remove(administrador_afiliado);
+    var pedido = await db.pedido.FindAsync(comprobante);
+    if (pedido is null) return Results.NotFound();
+    db.pedido.Remove(pedido);
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
@@ -300,6 +311,10 @@ var repartidorItems = app.MapGroup("/Repartidor");
 
 repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
 {
+    EmailPasswordManager managerEmail = new EmailPasswordManager();
+    r.password = managerEmail.GeneratePassword();
+    managerEmail.EmailSend(r.correo, r.password);
+
     db.repartidor.Add(r);
     await db.SaveChangesAsync();
     return Results.Created($"repartidor/{r.usuario}", r);
@@ -325,6 +340,7 @@ repartidorItems.MapPut("/{usuario}", async (string? usuario, Repartidor r, UbyTe
     repartidor.provincia = r.provincia;
     repartidor.canton = r.canton;
     repartidor.distrito = r.distrito;
+    repartidor.estado= r.estado;
 
     await db.SaveChangesAsync();
     return Results.Ok(repartidor);

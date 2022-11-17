@@ -69,13 +69,29 @@ create table repartidor(
 	distrito varchar(20) not NULL
 );
 
+/* 2 Estados: Disponible y No disponible */
+alter table repartidor
+add column estado varchar(20);
+
+alter table repartidor
+alter column estado set not NULL;
+
+Select * from repartidor;
+
+
 create table pedido(
 	comprobante SERIAL PRIMARY KEY,
 	direccion varchar(100) not NULL,
 	c_cedula int not NULL references cliente(cedula),
-	re_usuario varchar(20) not NULL references repartidor(usuario)
+	re_usuario varchar(20) references repartidor(usuario)
 );
 
+/* 3 Estados: Preparando, En camino y Finalizado */
+alter table pedido
+add column estado varchar(20);
+
+alter table pedido
+alter column estado set not NULL;
 
 Select * from pedido;
 

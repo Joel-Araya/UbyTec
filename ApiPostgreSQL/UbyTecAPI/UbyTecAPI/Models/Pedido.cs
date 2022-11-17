@@ -7,6 +7,7 @@ namespace UbyTecAPI.Models
     {
         [Key] public int comprobante { get; set; }
         public string? direccion { get; set; }
+        public string? estado { get; set; }
         [ForeignKey("cliente")] public int c_cedula { get; set; }
         [ForeignKey("repartidor")] public string? re_usuario { get; set; }
     }
