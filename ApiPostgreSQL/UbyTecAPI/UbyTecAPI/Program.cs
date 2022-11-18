@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using System.Data;
 using UbyTecAPI;
 using UbyTecAPI.Data;
 using UbyTecAPI.Models;
@@ -252,6 +254,32 @@ pedidosItems.MapPut("/{comprobante:int}", async (int comprobante, Pedido p, UbyT
     return Results.Ok(pedido);
 });
 
+// Actualiza la información del pedido al finalizarlo
+pedidosItems.MapPut("/{comprobante:int}/Finalizado", async (int comprobante, UbyTecDb db) =>
+{
+    var pedido = await db.pedido.FindAsync(comprobante);
+    if (pedido is null) return Results.NotFound();
+
+
+    using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+    {
+        using (NpgsqlCommand command = new NpgsqlCommand("call recepcion_pedido(:comprobante_id, :re_usuario_id);", con))
+        {
+
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("comprobante_id", DbType.Int64).Value = comprobante;
+            command.Parameters.AddWithValue("re_usuario_id", DbType.String).Value = pedido.re_usuario;
+            con.Open();
+            command.ExecuteNonQuery();
+
+        }
+    }
+
+
+    pedido.estado = "Finalizado";
+    return Results.Ok(pedido);
+});
+
 pedidosItems.MapDelete("/{comprobante:int}", async (int comprobante, UbyTecDb db) =>
 {
     var pedido = await db.pedido.FindAsync(comprobante);
@@ -314,6 +342,8 @@ repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
     EmailPasswordManager managerEmail = new EmailPasswordManager();
     r.password = managerEmail.GeneratePassword();
     managerEmail.EmailSend(r.correo, r.password);
+
+    
 
     db.repartidor.Add(r);
     await db.SaveChangesAsync();

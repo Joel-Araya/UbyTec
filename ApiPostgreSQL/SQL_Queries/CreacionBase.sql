@@ -47,6 +47,14 @@ create table comercio_afiliado(
 	a_usuario varchar(20) not NULL references administrador_afiliado(usuario)
 );
 
+/*Estados: En espera, Aceptado y Rechazado*/
+alter table comercio_afiliado
+add column estado varchar(50);
+
+alter table comercio_afiliado
+alter column estado set not NULL;
+
+select * from comercio_afiliado;
 
 create table producto(
 	nombre varchar(20) not NULL PRIMARY KEY,
