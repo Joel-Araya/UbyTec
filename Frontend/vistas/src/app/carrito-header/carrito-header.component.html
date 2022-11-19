@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+    <header>
+        <div class = "navbar bg shadow-sm">
+            <div class="navbar-brand align-item-center d-flex">
+                <i style="font-size: 30px;" class= "fas fa-shipping-fast white-color">&nbsp;
+                    <strong>UbyTEC</strong>
+                </i>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="search product">
+    
+                </div>
+                <span class="fas fa-search search-icon"></span>
+            </div>
+            <button routerLink="/carrito" class = "btn btn-bg">
+                <i style="font-size: 30px;" class="fa fa-cart-plus white-color"></i>
+                <div style="font-size: 10px" class = "badge bg-danger">{{totalItem}}</div>
+            </button>
+        </div>
+    
+    </header>
+</body>
+</html>

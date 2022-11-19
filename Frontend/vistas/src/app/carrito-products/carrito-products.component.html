@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <app-carrito-header></app-carrito-header>
+    </header>
+    <div class = "container">
+        <div class="row">
+            <ng-container *ngFor= "let item of productList">
+                <div class="card-col-md-3">
+                    <img class="mediana" src="{{item.image}}" alt="">
+                    <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;"> {{item.title}}</h5>
+                    <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;"> {{item.description}}</p>
+                    <p><strong> Price:</strong>${{item.price}}</p>
+                    <button class="btn btn-primary"(click)= addtocart(item)>Add to cart</button>
+                </div>
+            </ng-container>
+    </div></div>
+</body>
+</html>

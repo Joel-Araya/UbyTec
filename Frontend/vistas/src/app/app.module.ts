@@ -24,6 +24,9 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { CrearClienteComponent } from './crear-cliente/crear-cliente.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarritoComponent } from './carrito/carrito.component';
+import { CarritoProductsComponent } from './carrito-products/carrito-products.component';
+import { CarritoHeaderComponent } from './carrito-header/carrito-header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -46,6 +49,9 @@ const appRoutes:Routes=[
   {path: 'crearCuenta', component:CrearCuentaComponent},
   {path: 'feedback', component:FeedbackComponent},
   {path: 'crearCuentaCliente', component:CrearClienteComponent},
+  {path: 'carrito', component:CarritoComponent},
+  {path: 'header', component:CarritoHeaderComponent},
+  {path: 'pro', component: CarritoProductsComponent},
 
 ]
 
@@ -67,12 +73,16 @@ const appRoutes:Routes=[
     FeedbackComponent,
     CrearClienteComponent,
     CarritoComponent,
+    CarritoProductsComponent,
+    CarritoHeaderComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

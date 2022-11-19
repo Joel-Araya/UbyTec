@@ -1,1 +1,76 @@
-<p>carrito works!</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+  <header>
+    <app-carrito-header></app-carrito-header>
+  </header>
+  <ng-container *ngIf= "product.length !=0">
+    <div class="container">
+      <div class="card-table">
+        <div class="cart-product">
+          <table class = "table table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Image</th>
+                <th scope="col">Description <th>
+                <th scope="col">Price</th>
+                <th scope="col"> Quantity </th>
+                <th scope="col"> Total </th>
+                <th scope="col"> Action </th>
+              </tr>
+
+            </thead>
+            <tbody> 
+              <tr *ngFor = "let item of product; let i = index">
+                  <td> {{i+1}}</td>
+                  <td>{{item.title}} </td>
+                  <td><img style = "width: 120px;" src="{{item.image}}" alt = ""></td>
+                  <td>{{item.description}}</td>
+                  <td>{{item.price}}</td>
+                  <td>{{item.quantity}}</td>
+                  <td>{{item.total}}</td>
+                  <td> <button (click)="removeItem(item)" class= "btn btn-danger"> <i class="icono fas fa-trash-alt"></i></button></td>
+              </tr>
+              <tr>
+                <td colspan = "4">
+                </td>
+                <td> <button class= "btn btn-danger"> Empty cart</button></td>
+                <td> <button class= "btn btn-success"> Checkout</button></td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+
+  <ng-container *ngIf= "product.length == 0">
+
+    <div class="container">
+      <div class="card">
+        <h5 class="card-title">Mi pedido</h5>
+      </div>
+      <div class="center">
+        <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="">
+        <h4> Tu carrito esta vacio</h4>
+        <h6>Agregar productos a tu carrito</h6>
+        <button routerLink="/pro" style="color: aliceblue;" class = "bg"> Comprar</button>
+      </div>  
+    </div>
+
+  </ng-container>
+
+  
+</body>
+</html>

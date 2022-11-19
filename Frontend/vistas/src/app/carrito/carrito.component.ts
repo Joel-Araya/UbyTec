@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CartService } from '../servicios/cart.service';
+
 
 @Component({
   selector: 'app-carrito',
@@ -7,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarritoComponent implements OnInit {
 
+  public product : any = [];
+  public grandTotal !: number;
+ 
   
-  constructor() { }
+  constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getProduct()
+    .subscribe(res=>{
+      this.product = res; 
+      this.grandTotal = this.cartService.getTotalPrice();
+    })
+  }
+  //Metodos para el carrito 
+  
+  removeItem(item: any){
+    this.cartService.removeCartItem(item);
+
+  }
+
+  emptycart(){
+    this.cartService.removeAllCart();
   }
 
 }

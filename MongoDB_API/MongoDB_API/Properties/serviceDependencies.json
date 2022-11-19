@@ -2,6 +2,9 @@
   "dependencies": {
     "apis2": {
       "type": "apis"
+    },
+    "apis1": {
+      "type": "apis"
     }
   }
 }
