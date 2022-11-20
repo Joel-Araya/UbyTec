@@ -6,99 +6,154 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <h1 style="color: rgb(0, 0, 0);">texto</h1>
+            <h1 style="color: aliceblue;">Gestión de administradores</h1>
             <div class="d-flex">
-              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Gestionar Administradores</button>            </div>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+              <button type="button" (click)="crearAdministrador()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Nuevo</button>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+            <table class="table  table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cédula</th>
+                        <th>Usuario</th>
+                        <th>Password</th>
+                        <th>Nombre</th>
+                        <th>Provincia</th>
+                        <!-- <th>Teléfonos</th> -->
+                        <th>Cantón</th>
+                        <th>Distrito</th>
+                        <th style="width: 15%;" class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of admin;let i= index">
+                        <td>{{i+1}}</td>
+                        <td>
+                          {{user.cedula}}
+                       </td>
+                        <td>
+                            <div *ngIf="isEdit && user.cedula==ced">
+                                <input type="text" [(ngModel)]="user.usuario" class="form-control"/>
+                            </div>
+                            <div *ngIf="!isEdit && user.cedula==ced">
+                                {{user.usuario}}
+                            </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="isEdit">
+                              <input type="text" [(ngModel)]="user.password" class="form-control"/>
+                          </div>
+                          <div *ngIf="!isEdit">
+                              {{user.password}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="isEdit">
+                              <input type="text" [(ngModel)]="user.nombre" class="form-control"/>
+                          </div>
+                          <div *ngIf="!isEdit">
+                              {{user.nombre}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="isEdit">
+                              <input type="text" [(ngModel)]="user.provincia" class="form-control"/>
+                          </div>
+                          <div *ngIf="!isEdit">
+                              {{user.provincia}}
+                          </div> 
+                        </td>
+                        <td>
+                        <td>
+                          <div *ngIf="isEdit">
+                              <input type="text" [(ngModel)]="user.canton" class="form-control"/>
+                          </div>
+                          <div *ngIf="!isEdit">
+                              {{user.canton}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="isEdit">
+                            <input type="text" [(ngModel)]="user.distrito" class="form-control"/>
+                          </div>
+                          <div *ngIf="!isEdit">
+                            {{user.distrito}}
+                          </div> 
+                        </td>
+                        <td style="width: 15%;" class="text-center">
+                          <div *ngIf="isEdit">
+                              <button class="btn btn-sm btn-danger" (click)="actualizarAdministrador(user)">Eliminar</button> 
+                              <button class="btn btn-sm btn-success" style="margin-left: 10px;" (click)="isEdit = false" >Hecho</button> 
+                          </div>
+                          <div *ngIf="!isEdit">
+                              <button class="btn btn-sm btn-success" (click)="onEdit(user)">Editar</button> 
+                          </div> 
+                        </td>
+                    </tr>
+                </tbody> 
+            </table> 
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                  <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div *ngIf="cedula">
+                    <div class="modal-body">
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.cedula">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Nombre completo</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.nombre">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Provincia</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.provincia">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.canton">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.distrito">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm" >Usuario</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.usuario">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.password">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary" (click)="agregarTrabajador(cedula)">Insertar</button>
+                    </div>
+                  </div>
                 </div>
-            <div class="modal-body">
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Cedula">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre completo</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Nombre">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Provincia</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Provincia">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Canton">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Distrito">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Teléfonos</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Telefonos"> 
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Usuario</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Usuario">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Password">
-                  </div>
-                  
-        </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" (click)="agregarAdmin()">Insertar</button>
-            </div>
-        </div>
+              </div>
+            </div> -->
         </div>
     </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div>
-                    <br>
-                    <table class="table mt-2">
-                        <thead>
-                          <tr>
-                            <th scope="col" class="group-item-action">#</th>
-                            <th scope="col">Cédula</th>
-                            <th scope="col">Nombre completo</th>                          
-                            <th scope="col">Provincia</th>
-                            <th scope="col">Cantón</th>
-                            <th scope="col">Distrito</th>
-                            <th scope="col">Teléfonos</th>
-                            <th scope="col">Usuario</th>
-                            <th scope="col">Password</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let administradores of admins let i=index">
-                            <th scope="row">{{i+1}}</th>
-                            <td>{{administradores.cedula}}</td>
-                            <td>{{administradores.nombre}}</td>
-                            <td>{{administradores.provincia}}</td>
-                            <td>{{administradores.canton}}</td>
-                            <td>{{administradores.distrito}}</td>
-                            <td>{{administradores.telefonos}}</td>
-                            <td>{{administradores.usuario}}</td>
-                            <td>{{administradores.password}}</td>
-                          </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
+<app-insertar-admin
+[empleado]="adminAEditar"
+(empleadosActualizados)="listaActualizada($event)"
+></app-insertar-admin>
 </html>
+<!-- [admin]="adminAEditar"
+(empleadosActualizados)="listaActualizada($event)" -->

@@ -6,112 +6,185 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <h1 style="color: rgb(0, 0, 0);">texto</h1>
+            <h1 style="color: aliceblue;">Gestión de Afiliados</h1>
             <div class="d-flex">
-              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Gestionar afiliados</button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Nuevo Afiliado</button>
               <a type="button" class="btn btn-success" style="margin-left: 10px;" href="/comercioAfiliado">Gestión de Administrador del Comercio Afiliado</a>
             </div>
           </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    </nav>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+            <table class="table  table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cédula</th>
+                        <th>Nombre del Comercio</th>
+                        <th>Tipo de Comercio</th>
+                        <th>Provincia</th>
+                        <th>Cantón</th>
+                        <th>Distrito</th>
+                        <th>Teléfonos</th>
+                        <th>Correo</th>
+                        <th>Número de Sinpe</th>
+                        <th>Administrador</th>
+                        <th style="width: 15%;" class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of afiliados;let i= index">
+                        <td>{{i+1}}</td>
+                        <td>
+                          {{user.cedula}}
+                        </td>
+                        <td>
+                            <div *ngIf="user.isEdit">
+                                <input type="text" [(ngModel)]="user.nombreComercio" class="form-control"/>
+                            </div>
+                            <div *ngIf="!user.isEdit">
+                                {{user.nombreComercio}}
+                            </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.tipoComercio" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.tipoComercio}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.provincia" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.provincia}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.canton" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.canton}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.distrito" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.distrito}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.telefonos" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.telefonos}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.correo" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.correo}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                            <input type="text" [(ngModel)]="user.numSinpe" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                            {{user.numSinpe}}
+                          </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.admin" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.admin}}
+                          </div> 
+                        </td>
+                        <td style="width: 15%;" class="text-center">
+                          <div *ngIf="user.isEdit">
+                              <button class="btn btn-sm btn-danger">Eliminar</button> 
+                              <button class="btn btn-sm btn-success" style="margin-left: 10px;" (click)="user.isEdit = false">Hecho</button> 
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              <button class="btn btn-sm btn-success" (click)="onEdit(user)">Editar</button> 
+                          </div> 
+                        </td>
+                    </tr>
+                </tbody> 
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
                     <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Cedula">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Nombre del comercio</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="NombreComercio">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Tipo de comercio</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="TipoComercio">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Provincia</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Provincia">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Canton">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Distrito">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Teléfonos</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Telefonos"> 
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Correo</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Correo">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Número de sinpe</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="NumSinpe">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Administrador</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Admin">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)="agregarAfiliado()">Insertar</button>
+                    </div>
+                  </div>
                 </div>
-            <div class="modal-body">
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Cedula">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre del comercio</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="NombreComercio">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Tipo de comercio</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="TipoComercio">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Tipo de comercio</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Provincia">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Canton">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Distrito">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Teléfonos</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Telefonos"> 
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Correo</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Correo">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Número de sinpe</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="NumSinpe">
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Administrador</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Admin">
-              </div>
-        </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" (click)="agregarAfiliado()">Insertar</button>
-            </div>
-        </div>
+              </div> 
         </div>
     </div>
-      </nav>
-      <div class="container">
-        <div class="row">
-            <div class="col">
-                <div>
-                    <br>
-                    <table class="table mt-2">
-                        <thead>
-                          <tr>
-                            <th scope="col" class="group-item-action">#</th>
-                            <th scope="col">Cédula</th>
-                            <th scope="col">Nombre del comercio</th>
-                            <th scope="col">Tipo de comercio</th>                            
-                            <th scope="col">Provincia</th>
-                            <th scope="col">Cantón</th>
-                            <th scope="col">Distrito</th>
-                            <th scope="col">Teléfonos</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Número de sinpe</th>
-                            <th scope="col">Administrador</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let afiliados of afiliados let i=index">
-                            <th scope="row">{{i+1}}</th>
-                            <td>{{afiliados.cedula}}</td>
-                            <td>{{afiliados.nombreComercio}}</td>
-                            <td>{{afiliados.tipoComercio}}</td>
-                            <td>{{afiliados.provincia}}</td>
-                            <td>{{afiliados.canton}}</td>
-                            <td>{{afiliados.distrito}}</td>
-                            <td>{{afiliados.telefonos}}</td>
-                            <td>{{afiliados.correo}}</td>
-                            <td>{{afiliados.numSinpe}}</td>
-                            <td>{{afiliados.admin}}</td>
-                          </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 </html>

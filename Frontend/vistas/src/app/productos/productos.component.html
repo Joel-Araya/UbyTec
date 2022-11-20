@@ -6,83 +6,101 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <h1 style="color: rgb(0, 0, 0);">texto</h1>
+            <h1 style="color: aliceblue">Gestión de Productos</h1>
             <div class="d-flex">
-              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Gestionar Producto</button>            </div>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            <div class="modal-body">
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Categoría</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Fotos</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-        </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Insertar</button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Nuevo Producto</button>
             </div>
         </div>
-        </div>
-    </div>
     </nav>
+    <br>
     <div class="container">
       <div class="row">
-          <div class="col">
-              <div>
-                  <br>
-                  <table class="table mt-2">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="group-item-action">#</th>
-                          <th scope="col">Nombre</th>                          
-                          <th scope="col">Categoría</th>
-                          <th scope="col">Precio</th>
-                          <th scope="col">Fotos</th>
-                        </tr>
-                      </thead>
-                      <!-- <tbody>
-                        <tr *ngFor="let productos let i=index">
-                          <th scope="row">{{i+1}}</th>
-                          <td>{{productos.nombre}}</td>
-                          <td>{{productos.categoria}}</td>
-                          <td>{{productos.precio}}</td>
-                          <td></td>
-                        </tr>
-                      </tbody> -->
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <button type="button" class="btn btn-info" style="margin: 5px;">Ver fotos</button>
-                        </tr>
-                      </tbody>
-                  </table>
+        <div class="col-12">
+            <table class="table  table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Fotos</th>
+                        <th style="width: 15%;" class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of productos;let i= index">
+                        <td>{{i+1}}</td>
+                        <td>
+                          {{user.nombre}}
+                        </td>
+                        <td>
+                            <div *ngIf="user.isEdit">
+                                <input type="text" [(ngModel)]="user.categoria" class="form-control"/>
+                            </div>
+                            <div *ngIf="!user.isEdit">
+                                {{user.categoria}}
+                            </div> 
+                        </td>
+                        <td>
+                          <div *ngIf="user.isEdit">
+                              <input type="text" [(ngModel)]="user.precio" class="form-control"/>
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              {{user.precio}}
+                          </div> 
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-info">Fotos</button>
+                        </td>
+                        <td style="width: 15%;" class="text-center">
+                          <div *ngIf="user.isEdit">
+                              <button class="btn btn-sm btn-danger">Eliminar</button> 
+                              <button class="btn btn-sm btn-success" style="margin-left: 10px;" (click)="user.isEdit = false">Hecho</button> 
+                          </div>
+                          <div *ngIf="!user.isEdit">
+                              <button class="btn btn-sm btn-success" (click)="onEdit(user)">Editar</button> 
+                          </div> 
+                        </td>
+                    </tr>
+                </tbody> 
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Nombre">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Categoría</span>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Categoria">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="Precio">
+                    </div>
+                    <!-- <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Fotos</span>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div> -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="agregarProducto()">Insertar</button>
+                  </div>
+                </div>
               </div>
-          </div>
+            </div>
+        </div>
       </div>
-  </div>
+    </div>
 </body>
 </html>

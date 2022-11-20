@@ -27,6 +27,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { CarritoProductsComponent } from './carrito-products/carrito-products.component';
 import { CarritoHeaderComponent } from './carrito-header/carrito-header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InsertarAdminComponent } from './insertar-admin/insertar-admin.component';
 
 
 
@@ -75,6 +76,7 @@ const appRoutes:Routes=[
     CarritoComponent,
     CarritoProductsComponent,
     CarritoHeaderComponent,
+    InsertarAdminComponent,
   ],
   imports: [
     BrowserModule,

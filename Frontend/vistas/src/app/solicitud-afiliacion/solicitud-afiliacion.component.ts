@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SolicitudService } from '../servicios/solicitud.service';
+import { Solicitud } from './solicitud.model';
 
 @Component({
   selector: 'app-solicitud-afiliacion',
@@ -7,7 +8,7 @@ import { SolicitudService } from '../servicios/solicitud.service';
   styleUrls: ['./solicitud-afiliacion.component.css']
 })
 export class SolicitudAfiliacionComponent implements OnInit {
-  @Input() datos:any;
+  @Input() datos?:Solicitud;
 
   constructor(private solicitud:SolicitudService) { }
 

@@ -13,11 +13,19 @@ export class AfiliadosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onEdit(item: any) {
+    debugger;
+    this.afiliados.forEach(element => {
+      element.isEdit = false;
+    });
+    item.isEdit = true;
+  }
+
   afiliados:Afiliado[]=[]
 
   agregarAfiliado(){
     let afiliados = new Afiliado(this.Cedula, this.NombreComercio, this.TipoComercio, this.Provincia, this.Canton, this.Distrito,
-       this.Telefonos, this.Correo, this.NumSinpe, this.Admin)
+       this.Telefonos, this.Correo, this.NumSinpe, this.Admin, this.IsEdit)
     this.afiliados.push(afiliados)
   }
 
@@ -31,4 +39,5 @@ export class AfiliadosComponent implements OnInit {
   Correo:string="";
   NumSinpe:string="";
   Admin:string="";
+  IsEdit:boolean=false;
 }

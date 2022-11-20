@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AdminsService } from '../servicios/admins.service';
 import { Administrador } from './admins.model';
+import { InsertarAdminComponent } from '../insertar-admin/insertar-admin.component';
 
 @Component({
   selector: 'app-administradores',
@@ -8,22 +10,64 @@ import { Administrador } from './admins.model';
 })
 export class AdministradoresComponent implements OnInit {
 
-  constructor() { }
+  @Input() cedula?: Administrador;
+  admin:Administrador[]=[];
+  adminAEditar?:Administrador;
+
+  isEdit:boolean=false;
+  ced?:number;
+
+
+  @Input() empleado?: Administrador;
+  @Output() empleadosActualizados = new EventEmitter<Administrador[]>()
+
+  constructor(private adminService: AdminsService) { }
 
   ngOnInit(): void {
+    this.adminService
+    .getEmpleados()
+    .subscribe((result: Administrador[]) => (this.admin = result));
   }
 
-  admins:Administrador[]=[
-    new Administrador(207860865, "Gustavo Zamora", "Alajuela", "Zarcero", "Alfaro Ruiz", "86837404", "gaze10", "bc")
-  ]
+  listaActualizada(admin: Administrador[]){
+    this.admin = admin;
+  }
 
-  agregarAdmin(){
+  crearAdministrador(){
+    this.adminAEditar = new Administrador();
+  }
 
-    let admin = new Administrador(this.Cedula, this.Nombre, this.Provincia, this.Canton, this.Distrito, this.Telefonos, this.Usuario, this.Password);
+  editAdministrador(trabajadores: Administrador){
+    this.adminAEditar = trabajadores;
+  }
+  onEdit(item: any) {
+    debugger;
+    console.log(item);
+    this.admin.forEach(element => {
+
+        this.isEdit=false;
+      
+      
+    });
+    this.isEdit = true;
+    this.ced = item.cedula;
+    
+  }
+  
+  actualizarAdministrador(empleado:Administrador){
+    this.adminService
+    .actualizarEmpleados(empleado)
+    .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
+    console.log(this.admin);
+  }
+
+  /* agregarAdmin(){
+
+    let admin = new Administrador(this.Cedula, this.Nombre, this.Provincia, this.Canton, this.Distrito, this.Telefonos, this.Usuario, this.Password, this.IsEdit);
     this.admins.push(admin);
-  }
+  } */
 
-  Cedula:number=0;
+  /* Cedula:number=0;
   Nombre:string="";
   Provincia:string="";
   Canton:string="";
@@ -31,5 +75,7 @@ export class AdministradoresComponent implements OnInit {
   Telefonos:string="";
   Usuario:string="";
   Password:string="";
+  IsEdit:boolean=false; */
+
 
 }

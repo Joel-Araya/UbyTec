@@ -80,3 +80,47 @@ D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecA
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.pdb
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.genruntimeconfig.cache
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\ref\UbyTecAPI.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\appsettings.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\UbyTecAPI.exe
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\UbyTecAPI.deps.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\UbyTecAPI.runtimeconfig.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\UbyTecAPI.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\UbyTecAPI.pdb
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Npgsql.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.AssemblyInfo.cs
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets\msbuild.UbyTecAPI.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets\msbuild.build.UbyTecAPI.props
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.UbyTecAPI.props
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.UbyTecAPI.props
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\scopedcss\bundle\UbyTecAPI.styles.css
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.csproj.CopyComplete
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\refint\UbyTecAPI.dll
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.pdb
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.genruntimeconfig.cache
+C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\ref\UbyTecAPI.dll
