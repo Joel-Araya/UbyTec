@@ -17,6 +17,20 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
 builder.Services.AddDbContext<UbyTecDb>(options => options.UseNpgsql(connectionString));
 
+
+var misReglasCors = "ReglasCors";
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(name: misReglasCors, builder =>
+    {
+        builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+    });
+});
+
+
+
+
+
 var app = builder.Build();
 
 /*// Configure the HTTP request pipeline.
@@ -30,6 +44,7 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors(misReglasCors);
 app.UseHttpsRedirection();
 
 

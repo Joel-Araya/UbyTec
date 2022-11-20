@@ -12,15 +12,12 @@ D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Mic
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
-D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Npgsql.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\System.CodeDom.dll
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.csproj.AssemblyReference.cache
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.GeneratedMSBuildEditorConfig.editorconfig
 D:\Acceso rapido\Descargas\TesteandoApi\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.AssemblyInfoInputs.cache
@@ -56,15 +53,12 @@ D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecA
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
-D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Npgsql.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\System.CodeDom.dll
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.csproj.AssemblyReference.cache
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.GeneratedMSBuildEditorConfig.editorconfig
 D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.AssemblyInfoInputs.cache
