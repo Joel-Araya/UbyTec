@@ -260,14 +260,46 @@ pedidosItems.MapPut("/{comprobante:int}", async (int comprobante, Pedido p, UbyT
     var pedido = await db.pedido.FindAsync(comprobante);
     if (pedido is null) return Results.NotFound();
 
-    pedido.direccion = p.direccion;
     pedido.estado = p.estado;
     pedido.c_cedula = p.c_cedula;
     pedido.re_usuario = p.re_usuario;
 
+    pedido.provincia = p.provincia;
+    pedido.canton = p.canton;
+    pedido.distrito = p.distrito;
+
     await db.SaveChangesAsync();
     return Results.Ok(pedido);
 });
+
+// Actualiza la información del pedido para asignarle un repartidor
+pedidosItems.MapPut("/{comprobante:int}/EnCamino", async (int comprobante, UbyTecDb db) =>
+{
+    var pedido = await db.pedido.FindAsync(comprobante);
+    if (pedido is null) return Results.NotFound();
+
+
+    using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+    {
+        using (NpgsqlCommand command = new NpgsqlCommand("call set_pedido(:comprobante_id, :provincia_ped, :canton_ped, :distrito_ped);", con))
+        {
+
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("comprobante_id", DbType.Int64).Value = comprobante;
+            command.Parameters.AddWithValue("provincia_ped", DbType.String).Value = pedido.provincia;
+            command.Parameters.AddWithValue("canton_ped", DbType.String).Value = pedido.canton;
+            command.Parameters.AddWithValue("distrito_ped", DbType.String).Value = pedido.distrito;
+            con.Open();
+            command.ExecuteNonQuery();
+
+        }
+    }
+
+    //var newPedido = await db.pedido.Update(pedido);
+    //pedido.estado = "En camino"
+    return Results.Ok("El pedido se encuentra en camino");
+});
+
 
 // Actualiza la información del pedido al finalizarlo
 pedidosItems.MapPut("/{comprobante:int}/Finalizado", async (int comprobante, UbyTecDb db) =>
@@ -292,7 +324,7 @@ pedidosItems.MapPut("/{comprobante:int}/Finalizado", async (int comprobante, Uby
 
 
     pedido.estado = "Finalizado";
-    return Results.Ok(pedido);
+    return Results.Ok("El pedido ha sido completado");
 });
 
 pedidosItems.MapDelete("/{comprobante:int}", async (int comprobante, UbyTecDb db) =>
@@ -350,7 +382,7 @@ productosItems.MapDelete("/{nombre}", async (string? nombre, UbyTecDb db) =>
 
 
 // Métodos CRUD para Repartidor =================================================================================================================
-var repartidorItems = app.MapGroup("/Repartidor");
+var repartidorItems = app.MapGroup("/Repartidores");
 
 repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
 {
