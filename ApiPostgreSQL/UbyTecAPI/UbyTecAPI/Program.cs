@@ -52,7 +52,7 @@ app.UseHttpsRedirection();
 
 var empleadosItems = app.MapGroup("/Empleados");
 
-empleadosItems.MapPost("/", async(Empleado e, UbyTecDb db) =>
+empleadosItems.MapPost("/", async (Empleado e, UbyTecDb db) =>
 {
     db.empleado.Add(e);
     await db.SaveChangesAsync();
@@ -66,7 +66,7 @@ empleadosItems.MapGet("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 
 empleadosItems.MapGet("", async (UbyTecDb db) => await db.empleado.ToListAsync());
 
-empleadosItems.MapPut("/{cedula:int}", async (int cedula, Empleado e, UbyTecDb db) => 
+empleadosItems.MapPut("/{cedula:int}", async (int cedula, Empleado e, UbyTecDb db) =>
 {
     if (e.cedula != cedula) return Results.BadRequest();
     var empleado = await db.empleado.FindAsync(cedula);
@@ -77,7 +77,7 @@ empleadosItems.MapPut("/{cedula:int}", async (int cedula, Empleado e, UbyTecDb d
     empleado.nombre = e.nombre;
     empleado.provincia = e.provincia;
     empleado.canton = e.canton;
-    empleado.distrito= e.distrito;
+    empleado.distrito = e.distrito;
 
     await db.SaveChangesAsync();
     return Results.Ok(empleado);
@@ -119,12 +119,12 @@ clientesItems.MapPut("/{cedula:int}", async (int cedula, Cliente c, UbyTecDb db)
     cliente.usuario = c.usuario;
     cliente.password = c.password;
     cliente.nombre = c.nombre;
-    cliente.apellido1= c.apellido1;
+    cliente.apellido1 = c.apellido1;
     cliente.apellido2 = c.apellido2;
     cliente.provincia = c.provincia;
     cliente.canton = c.canton;
     cliente.distrito = c.distrito;
-    cliente.telefono= c.telefono;
+    cliente.telefono = c.telefono;
 
     await db.SaveChangesAsync();
     return Results.Ok(cliente);
@@ -163,7 +163,7 @@ aministradoresAfiliadosItems.MapGet("", async (UbyTecDb db) => await db.administ
 
 aministradoresAfiliadosItems.MapPut("/{usuario}", async (string? usuario, AdministradorAfiliado a, UbyTecDb db) =>
 {
-    if (a.usuario!= usuario) return Results.BadRequest();
+    if (a.usuario != usuario) return Results.BadRequest();
     var administrador_afiliado = await db.administrador_afiliado.FindAsync(usuario);
     if (administrador_afiliado is null) return Results.NotFound();
 
@@ -214,14 +214,14 @@ comerciosAfiliadosItems.MapPut("/{cedula:int}", async (int cedula, ComercioAfili
 
     comercio_afiliado.tipo_comercio = c.tipo_comercio;
     comercio_afiliado.nombre_comercio = c.nombre_comercio;
-    comercio_afiliado.num_sinpe= c.num_sinpe;
-    comercio_afiliado.administrador_comercio=c.administrador_comercio;
-    comercio_afiliado.correo=c.correo;
+    comercio_afiliado.num_sinpe = c.num_sinpe;
+    comercio_afiliado.administrador_comercio = c.administrador_comercio;
+    comercio_afiliado.correo = c.correo;
     comercio_afiliado.provincia = c.provincia;
     comercio_afiliado.canton = c.canton;
     comercio_afiliado.distrito = c.distrito;
     comercio_afiliado.a_usuario = c.a_usuario;
-    comercio_afiliado.estado= c.estado;
+    comercio_afiliado.estado = c.estado;
 
     await db.SaveChangesAsync();
     return Results.Ok(comercio_afiliado);
@@ -354,6 +354,13 @@ productosItems.MapGet("/{nombre}", async (string? nombre, UbyTecDb db) =>
 
 productosItems.MapGet("", async (UbyTecDb db) => await db.producto.ToListAsync());
 
+//Filtro de productos según el comercio
+productosItems.MapGet("/{co_cedula:int}", async (int co_cedula, UbyTecDb db) =>
+{
+    var productosComercio = db.producto.Where(x => x.co_cedula.Equals(co_cedula));
+    return productosComercio;
+});
+
 productosItems.MapPut("/{nombre}", async (string? nombre, Producto p, UbyTecDb db) =>
 {
     if (p.nombre != nombre) return Results.BadRequest();
@@ -390,7 +397,7 @@ repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
     r.password = managerEmail.GeneratePassword();
     managerEmail.EmailSend(r.correo, r.password);
 
-    
+
 
     db.repartidor.Add(r);
     await db.SaveChangesAsync();
@@ -417,7 +424,7 @@ repartidorItems.MapPut("/{usuario}", async (string? usuario, Repartidor r, UbyTe
     repartidor.provincia = r.provincia;
     repartidor.canton = r.canton;
     repartidor.distrito = r.distrito;
-    repartidor.estado= r.estado;
+    repartidor.estado = r.estado;
 
     await db.SaveChangesAsync();
     return Results.Ok(repartidor);
@@ -446,7 +453,7 @@ telefonosAdminItems.MapPost("/", async (TelefonoAdmin t, UbyTecDb db) =>
 
 telefonosAdminItems.MapGet("/{a_usuario}/{telefono:int}", async (string a_usuario, int telefono, UbyTecDb db) =>
 {
-    return await db.telefono_admin.FindAsync( telefono, a_usuario) is TelefonoAdmin t ? Results.Ok(t) : Results.NotFound();
+    return await db.telefono_admin.FindAsync(telefono, a_usuario) is TelefonoAdmin t ? Results.Ok(t) : Results.NotFound();
 });
 
 // Filtrado por usuario 
@@ -455,7 +462,7 @@ telefonosAdminItems.MapGet("/{a_usuario}", async (string a_usuario, UbyTecDb db)
 
     if ((db.telefono_admin.Any(x => x.a_usuario == a_usuario) || (db.administrador_afiliado.Any(x => x.usuario == a_usuario))) is false) return Results.NotFound();
 
-    var filtroUsuario = db.telefono_admin.Select(x => new { x.telefono, x.a_usuario }).Where(x=>x.a_usuario==a_usuario).ToList();
+    var filtroUsuario = db.telefono_admin.Select(x => new { x.telefono, x.a_usuario }).Where(x => x.a_usuario == a_usuario).ToList();
 
     return Results.Ok(filtroUsuario);
 });

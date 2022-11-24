@@ -20,15 +20,6 @@ $$
 $$
 language plpgsql;
 
-/*call recepcion_pedido(1, 'Rep08');
-call recepcion_pedido(5, 'Rep04');
-call recepcion_pedido(4, 'Rep05');*/
-
-select * from pedido;
-select * from repartidor;
-
-
-
 
 
 create or replace procedure set_pedido (comprobante_id int, provincia_ped varchar(20), canton_ped varchar(20), distrito_ped varchar(20))
@@ -65,10 +56,6 @@ $$
 language plpgsql;
 
  
-
-/*call set_pedido(1, 'Cartago', 'El Guarco', 'Tobosi');
-call set_pedido(5, 'Cartago', 'El Guarco', 'Tobosi');
-call set_pedido(4, 'Alajuela', 'Desamparados', 'Desamparados');*/
 
 select * from pedido;
 select * from repartidor;
