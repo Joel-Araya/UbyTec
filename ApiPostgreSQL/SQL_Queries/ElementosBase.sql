@@ -32,6 +32,7 @@ Insert into cliente values (14,'Jose14','HolaMundo14', 'Jose','Perez','Aguirre',
 Insert into administrador_afiliado values ('admin01', 'admin01@gmail.com', 'HelloWorld01','Pedro','Cartago', 'El Guarco', 'Tejar');
 Insert into administrador_afiliado values ('admin02', 'admin02@gmail.com', 'HelloWorld02','Pedro','Cartago', 'El Guarco', 'Tejar');
 Insert into administrador_afiliado values ('admin03', 'admin03@gmail.com', 'HelloWorld03','Pedro','Cartago', 'El Guarco', 'Tejar');
+Insert into administrador_afiliado values ('admin04', 'admin04@gmail.com', 'HelloWorld04','Pedro','Cartago', 'El Guarco', 'Tejar');
 Insert into administrador_afiliado values ('admin05', 'admin05@gmail.com', 'HelloWorld04','Pedro','Cartago', 'El Guarco', 'Tejar');
 Insert into administrador_afiliado values ('admin06', 'admin06@gmail.com', 'HelloWorld05','Pedro','Cartago', 'El Guarco', 'Tejar');
 Insert into administrador_afiliado values ('admin07', 'admin07@gmail.com', 'HelloWorld06','Pedro','Cartago', 'El Guarco', 'Tejar');
@@ -89,7 +90,38 @@ Insert into telefono_admin values (22335544, 'admin06');
 select * from telefono_admin;
 
 
+select * from producto;
+select * from comercio_afiliado;
+select * from administrador_afiliado;
 
+
+Insert into comercio_afiliado values (1, 'Tipo01', 'Com01', 'Comercio01', 11111111,'comAfi01@gmail.com', 'Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin01','Aceptado');
+Insert into comercio_afiliado values (2, 'Tipo02', 'Com02', 'Comercio02', 22222222,'comAfi02@gmail.com', 'Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin02','Aceptado');
+Insert into comercio_afiliado values (3, 'Tipo03', 'Com03', 'Comercio03', 33333333,'comAfi03@gmail.com', ',Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin03','Aceptado');
+Insert into comercio_afiliado values (4, 'Tipo04', 'Com04', 'Comercio04', 44444444,'comAfi04@gmail.com', 'Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin04','Aceptado');
+Insert into comercio_afiliado values (5, 'Tipo05', 'Com05', 'Comercio05', 55555555,'comAfi05@gmail.com', 'Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin05','Aceptado');
+Insert into comercio_afiliado values (6, 'Tipo06', 'Com06', 'Comercio06', 66666666,'comAfi06@gmail.com', 'Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin06','Aceptado');
+
+Insert into comercio_afiliado values (7, 'Tipo07', 'Com07', 'Comercio07', 77777777,'comAfi07@gmail.com', 'Admin', 'Cartago', 'Cartago', 'Dulce Nombre', 'admin07','Aceptado');
+
+Insert into producto values ('Prod01', 1, 'Categoria01', 111);
+Insert into producto values ('Prod02', 1, 'Categoria01', 111);
+Insert into producto values ('Prod03', 1, 'Categoria02', 111);
+Insert into producto values ('Prod04', 2, 'Categoria02', 222);
+Insert into producto values ('Prod05', 2, 'Categoria03', 222);
+Insert into producto values ('Prod06', 2, 'Categoria03', 222);
+Insert into producto values ('Prod07', 3, 'Categoria04', 333);
+Insert into producto values ('Prod08', 3, 'Categoria04', 333);
+Insert into producto values ('Prod09', 3, 'Categoria05', 333);
+Insert into producto values ('Prod10', 4, 'Categoria05', 444);
+Insert into producto values ('Prod11', 4, 'Categoria06', 444);
+Insert into producto values ('Prod12', 4, 'Categoria06', 444);
+Insert into producto values ('Prod13', 5, 'Categoria07', 555);
+Insert into producto values ('Prod14', 5, 'Categoria07', 555);
+Insert into producto values ('Prod15', 5, 'Categoria08', 555);
+Insert into producto values ('Prod16', 6, 'Categoria08', 666);
+Insert into producto values ('Prod17', 6, 'Categoria09', 666);
+Insert into producto values ('Prod18', 6, 'Categoria09', 666);
 
 
 
