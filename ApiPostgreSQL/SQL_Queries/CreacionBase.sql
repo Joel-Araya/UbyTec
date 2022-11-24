@@ -89,10 +89,22 @@ Select * from repartidor;
 
 create table pedido(
 	comprobante SERIAL PRIMARY KEY,
-	direccion varchar(100) not NULL,
 	c_cedula int not NULL references cliente(cedula),
 	re_usuario varchar(20) references repartidor(usuario)
 );
+
+alter table pedido
+add column provincia varchar(20),
+add column canton varchar(20),
+add column distrito varchar(20);
+
+
+alter table pedido
+alter column provincia set not NULL,
+alter column canton set not NULL,
+alter column distrito set not NULL;
+
+select * from pedido;
 
 /* 3 Estados: Preparando, En camino y Finalizado */
 alter table pedido
