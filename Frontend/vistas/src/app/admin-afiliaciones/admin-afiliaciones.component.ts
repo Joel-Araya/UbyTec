@@ -9,15 +9,11 @@ import { SolicitudService } from '../servicios/solicitud.service';
 })
 export class AdminAfiliacionesComponent implements OnInit {
 
-  constructor(private solicitud:SolicitudService) { }
+  constructor() { }
 
-  public listaNot:Array<any>=[]
+  
 
   ngOnInit(): void {
-    this.solicitud.disparador.subscribe(data => {
-      console.log("Recibiendo..",data);
-      this.listaNot.push(data);
-    })
   }
 
 }

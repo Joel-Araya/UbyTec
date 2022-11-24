@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AdminsService } from '../servicios/admins.service';
 import { Administrador } from './admins.model';
 import { InsertarAdminComponent } from '../insertar-admin/insertar-admin.component';
@@ -16,6 +16,9 @@ export class AdministradoresComponent implements OnInit {
 
   isEdit:boolean=false;
   ced?:number;
+
+  enableEdit = false;
+  enableEditIndex = null;
 
 
   @Input() empleado?: Administrador;
@@ -35,30 +38,44 @@ export class AdministradoresComponent implements OnInit {
 
   crearAdministrador(){
     this.adminAEditar = new Administrador();
+    
   }
 
   editAdministrador(trabajadores: Administrador){
     this.adminAEditar = trabajadores;
   }
   onEdit(item: any) {
-    debugger;
+    /* debugger;
     console.log(item);
     this.admin.forEach(element => {
 
         this.isEdit=false;
-      
-      
+            
     });
     this.isEdit = true;
-    this.ced = item.cedula;
+    this.ced = item.cedula; */
+    debugger;
+    this.admin.forEach(element => {
+      if(element.cedula!=this.cedula){
+        this.isEdit=false;
+      }
+      
+    });
+    this.isEdit=true;
     
-  }
+    /* debugger;
+    this.usersArray.forEach(element => {
+      element.isEdit = false;
+    });
+    item.isEdit = true; */
   
+  }
+
   actualizarAdministrador(empleado:Administrador){
     this.adminService
     .actualizarEmpleados(empleado)
     .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
-    console.log(this.admin);
+    console.log(this.empleado);
   }
 
   /* agregarAdmin(){

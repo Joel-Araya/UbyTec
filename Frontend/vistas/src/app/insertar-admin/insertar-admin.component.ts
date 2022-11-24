@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Administrador } from '../administradores/admins.model';
 import { AdminsService } from '../servicios/admins.service';
 
@@ -22,6 +22,8 @@ export class InsertarAdminComponent implements OnInit {
     this.empleadoService
     .actualizarEmpleados(empleado)
     .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
+    
+    console.log(empleado);
   }
 
   borrarAdministrador(empleado:Administrador){
@@ -34,7 +36,7 @@ export class InsertarAdminComponent implements OnInit {
     this.empleadoService
     .agregarEmpleados(empleado)
     .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
+    console.log(empleado);
   }
-
 
 }

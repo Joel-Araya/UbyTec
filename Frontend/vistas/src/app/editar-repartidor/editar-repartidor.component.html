@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue;"></h1>
+            <!-- <div class="d-flex">
+              <button type="button" (click)="crearAdministrador()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Nuevo</button>
+            </div> -->
+        </div>
+    </nav>
+    <br><br>
+    <div class="container">
+
+        <form [formGroup]="editarForm" (ngSubmit)="postForm(editarForm.value)">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Usuario</label>
+                <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Correo</label>
+                <input type="text" class="form-control" placeholder="Correo" formControlName="correo">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Password</label>
+                <input type="text" class="form-control" placeholder="Password" formControlName="password">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provincia</label>
+                <input type="text" class="form-control" placeholder="Provincia" formControlName="provincia">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cantón</label>
+                <input type="text" class="form-control" placeholder="Cantón" formControlName="canton">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Distrito</label>
+                <input type="text" class="form-control" placeholder="Distrito" formControlName="distrito">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Estado</label>
+                <input type="text" class="form-control" placeholder="Estado" formControlName="estado">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
+        </form>
+    </div>
+</body>
+</html>

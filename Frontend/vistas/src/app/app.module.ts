@@ -12,7 +12,7 @@ import { AfiliadosComponent } from './afiliados/afiliados.component';
 import { RepartidoresComponent } from './repartidores/repartidores.component';
 import { AdminComercioAfiliadoComponent } from './admin-comercio-afiliado/admin-comercio-afiliado.component';
 import { AdminAfiliacionesComponent } from './admin-afiliaciones/admin-afiliaciones.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SolicitudAfiliacionComponent } from './solicitud-afiliacion/solicitud-afiliacion.component';
 import { ProductosComponent } from './productos/productos.component';
@@ -28,6 +28,9 @@ import { CarritoProductsComponent } from './carrito-products/carrito-products.co
 import { CarritoHeaderComponent } from './carrito-header/carrito-header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InsertarAdminComponent } from './insertar-admin/insertar-admin.component';
+import { ObjToArray } from './objToArray.pipe';
+import { InsertarRepartidorComponent } from './insertar-repartidor/insertar-repartidor.component';
+import { EditarRepartidorComponent } from './editar-repartidor/editar-repartidor.component';
 
 
 
@@ -53,6 +56,8 @@ const appRoutes:Routes=[
   {path: 'carrito', component:CarritoComponent},
   {path: 'header', component:CarritoHeaderComponent},
   {path: 'pro', component: CarritoProductsComponent},
+  {path: 'editarRepartidor/:usuario', component: EditarRepartidorComponent},
+  {path: 'insertarRepartidor', component:InsertarRepartidorComponent},
 
 ]
 
@@ -77,13 +82,17 @@ const appRoutes:Routes=[
     CarritoProductsComponent,
     CarritoHeaderComponent,
     InsertarAdminComponent,
+    ObjToArray,
+    InsertarRepartidorComponent,
+    EditarRepartidorComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [],

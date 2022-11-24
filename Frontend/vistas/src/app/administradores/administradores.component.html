@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark">
@@ -27,14 +28,22 @@
                         <th>Password</th>
                         <th>Nombre</th>
                         <th>Provincia</th>
-                        <!-- <th>Teléfonos</th> -->
                         <th>Cantón</th>
                         <th>Distrito</th>
-                        <th style="width: 15%;" class="text-center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of admin;let i= index">
+                  <tr *ngFor="let user of admin; let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{user.cedula}}</td>
+                    <td>{{user.usuario}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.nombre}}</td>
+                    <td>{{user.provincia}}</td>
+                    <td>{{user.canton}}</td>
+                    <td>{{user.distrito}}</td>
+                  </tr>
+                    <!-- <tr *ngFor="let user of admin;let i= index">
                         <td>{{i+1}}</td>
                         <td>
                           {{user.cedula}}
@@ -72,7 +81,6 @@
                           </div> 
                         </td>
                         <td>
-                        <td>
                           <div *ngIf="isEdit">
                               <input type="text" [(ngModel)]="user.canton" class="form-control"/>
                           </div>
@@ -97,55 +105,9 @@
                               <button class="btn btn-sm btn-success" (click)="onEdit(user)">Editar</button> 
                           </div> 
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody> 
             </table> 
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div *ngIf="cedula">
-                    <div class="modal-body">
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.cedula">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Nombre completo</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.nombre">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Provincia</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.provincia">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.canton">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.distrito">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm" >Usuario</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.usuario">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="cedula.password">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary" (click)="agregarTrabajador(cedula)">Insertar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
         </div>
     </div>
     </div>
@@ -155,5 +117,3 @@
 (empleadosActualizados)="listaActualizada($event)"
 ></app-insertar-admin>
 </html>
-<!-- [admin]="adminAEditar"
-(empleadosActualizados)="listaActualizada($event)" -->
