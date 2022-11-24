@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Data;
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<UbyTecDb>(options => options.UseNpgsql(connectionS
 
 
 var misReglasCors = "ReglasCors";
+
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: misReglasCors, builder =>
@@ -26,7 +28,6 @@ builder.Services.AddCors(opt =>
         builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
     });
 });
-
 
 
 
@@ -48,7 +49,7 @@ app.UseCors(misReglasCors);
 app.UseHttpsRedirection();
 
 
-// Métodos CRUD para Empleado =================================================================================================================
+// ========================================================= Métodos CRUD para Empleado =========================================================
 
 var empleadosItems = app.MapGroup("/Empleados");
 
@@ -62,6 +63,15 @@ empleadosItems.MapPost("/", async (Empleado e, UbyTecDb db) =>
 empleadosItems.MapGet("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     return await db.empleado.FindAsync(cedula) is Empleado e ? Results.Ok(e) : Results.NotFound();
+});
+
+empleadosItems.MapGet("/Login/{cedula:int}/{password}", async (int cedula, string? password, UbyTecDb db) =>
+{
+    var empleadoLogin = await db.empleado.FindAsync(cedula);
+    if (empleadoLogin is null) return Results.NotFound();
+    if(password == null) return Results.NotFound();
+    if (empleadoLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    return Results.Ok(empleadoLogin);
 });
 
 empleadosItems.MapGet("", async (UbyTecDb db) => await db.empleado.ToListAsync());
@@ -83,17 +93,28 @@ empleadosItems.MapPut("/{cedula:int}", async (int cedula, Empleado e, UbyTecDb d
     return Results.Ok(empleado);
 });
 
+// Borra empleado mediante procedimiento almacenado
 empleadosItems.MapDelete("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     var empleado = await db.empleado.FindAsync(cedula);
     if (empleado is null) return Results.NotFound();
-    db.empleado.Remove(empleado);
-    await db.SaveChangesAsync();
+
+    using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+    {
+        using (NpgsqlCommand command = new NpgsqlCommand("call eliminarEmpleado(:cedula_id);", con))
+        {
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("cedula_id", DbType.Int64).Value = cedula;
+            con.Open();
+            command.ExecuteNonQuery();
+        }
+    }
+
     return Results.NoContent();
 });
 
 
-// Métodos CRUD para Cliente =================================================================================================================
+// ========================================================= Métodos CRUD para Cliente =========================================================
 var clientesItems = app.MapGroup("/Clientes");
 
 clientesItems.MapPost("/", async (Cliente c, UbyTecDb db) =>
@@ -106,6 +127,16 @@ clientesItems.MapPost("/", async (Cliente c, UbyTecDb db) =>
 clientesItems.MapGet("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     return await db.cliente.FindAsync(cedula) is Cliente c ? Results.Ok(c) : Results.NotFound();
+});
+
+//Login Clientes
+clientesItems.MapGet("/Login/{cedula:int}/{password}", async (int cedula, string? password, UbyTecDb db) =>
+{
+    var clienteLogin = await db.cliente.FindAsync(cedula);
+    if (clienteLogin is null) return Results.NotFound();
+    if (password == null) return Results.NotFound();
+    if (clienteLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    return Results.Ok(clienteLogin);
 });
 
 clientesItems.MapGet("", async (UbyTecDb db) => await db.cliente.ToListAsync());
@@ -140,9 +171,10 @@ clientesItems.MapDelete("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 });
 
 
-// Métodos CRUD para Administrador Afiliado =================================================================================================================
+// ========================================================= Métodos CRUD para Administrador Afiliado =========================================================
 var aministradoresAfiliadosItems = app.MapGroup("/Administradores_Afiliados");
 
+//Inserta administrador afiliado y envía contraseña a su email
 aministradoresAfiliadosItems.MapPost("/", async (AdministradorAfiliado a, UbyTecDb db) =>
 {
     EmailPasswordManager managerEmail = new EmailPasswordManager();
@@ -157,6 +189,16 @@ aministradoresAfiliadosItems.MapPost("/", async (AdministradorAfiliado a, UbyTec
 aministradoresAfiliadosItems.MapGet("/{usuario}", async (string? usuario, UbyTecDb db) =>
 {
     return await db.administrador_afiliado.FindAsync(usuario) is AdministradorAfiliado a ? Results.Ok(a) : Results.NotFound();
+});
+
+// Login administrador afiliado
+aministradoresAfiliadosItems.MapGet("/Login/{usuario}/{password}", async (string? usuario, string? password, UbyTecDb db) =>
+{
+    var adminAfiliadoLogin = await db.administrador_afiliado.FindAsync(usuario);
+    if (adminAfiliadoLogin is null) return Results.NotFound();
+    if (password == null) return Results.NotFound();
+    if (adminAfiliadoLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    return Results.Ok(adminAfiliadoLogin);
 });
 
 aministradoresAfiliadosItems.MapGet("", async (UbyTecDb db) => await db.administrador_afiliado.ToListAsync());
@@ -183,13 +225,23 @@ aministradoresAfiliadosItems.MapDelete("/{usuario}", async (string? usuario, Uby
 {
     var administrador_afiliado = await db.administrador_afiliado.FindAsync(usuario);
     if (administrador_afiliado is null) return Results.NotFound();
-    db.administrador_afiliado.Remove(administrador_afiliado);
-    await db.SaveChangesAsync();
+
+    using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+    {
+        using (NpgsqlCommand command = new NpgsqlCommand("call eliminarAdmin(:usuario_id);", con))
+        {
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("usuario_id", DbType.Int64).Value = usuario;
+            con.Open();
+            command.ExecuteNonQuery();
+        }
+    }
+
     return Results.NoContent();
 });
 
 
-// Métodos CRUD para Comercio Afiliado =================================================================================================================
+// ========================================================= Métodos CRUD para Comercio Afiliado =========================================================
 var comerciosAfiliadosItems = app.MapGroup("/Comercios_Afiliados");
 
 comerciosAfiliadosItems.MapPost("/", async (ComercioAfiliado c, UbyTecDb db) =>
@@ -199,6 +251,28 @@ comerciosAfiliadosItems.MapPost("/", async (ComercioAfiliado c, UbyTecDb db) =>
     return Results.Created($"comercio_afiliado/{c.cedula}", c);
 });
 
+//Filtro por comercios aceptados
+comerciosAfiliadosItems.MapGet("/Aceptados", async (UbyTecDb db) =>
+{
+    var comerciosAceptados = db.comercio_afiliado.Where(x=>x.estado.Equals("Aceptado"));
+    return comerciosAceptados;
+});
+
+//Filtro por comercios en espera
+comerciosAfiliadosItems.MapGet("/EnEspera", async (UbyTecDb db) =>
+{
+    var comerciosAceptados = db.comercio_afiliado.Where(x=>x.estado.Equals("En espera"));
+    return comerciosAceptados;
+});
+
+//Filtro por comercios en Rechazado
+comerciosAfiliadosItems.MapGet("/Rechazados", async (UbyTecDb db) =>
+{
+    var comerciosAceptados = db.comercio_afiliado.Where(x=>x.estado.Equals("Rechazado"));
+    return comerciosAceptados;
+});
+
+// Método get para obtener a todos los comercios
 comerciosAfiliadosItems.MapGet("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     return await db.comercio_afiliado.FindAsync(cedula) is ComercioAfiliado c ? Results.Ok(c) : Results.NotFound();
@@ -227,17 +301,40 @@ comerciosAfiliadosItems.MapPut("/{cedula:int}", async (int cedula, ComercioAfili
     return Results.Ok(comercio_afiliado);
 });
 
+//Pone el estado del comercio en Aceptado o Rechazado
+comerciosAfiliadosItems.MapPut("/{cedula:int}/{estado}", async (int cedula, string? estado, UbyTecDb db) =>
+{
+    if (estado.Equals("Aceptado") == false && estado.Equals("Rechazado") == false) return Results.BadRequest();
+    var comercio_afiliado = await db.comercio_afiliado.FindAsync(cedula);
+    if (comercio_afiliado is null) return Results.NotFound();
+
+    comercio_afiliado.estado =  estado; //"Aceptado" o "Rechazado"
+
+    await db.SaveChangesAsync();
+    return Results.Ok(comercio_afiliado);
+});
+
 comerciosAfiliadosItems.MapDelete("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     var comercio_afiliado = await db.comercio_afiliado.FindAsync(cedula);
     if (comercio_afiliado is null) return Results.NotFound();
-    db.comercio_afiliado.Remove(comercio_afiliado);
-    await db.SaveChangesAsync();
+
+    using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+    {
+        using (NpgsqlCommand command = new NpgsqlCommand("call eliminarComercio(:cedula_id);", con))
+        {
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("cedula_id", DbType.Int64).Value = cedula;
+            con.Open();
+            command.ExecuteNonQuery();
+        }
+    }
+
     return Results.NoContent();
 });
 
 
-// Métodos CRUD para Pedido =================================================================================================================
+// ========================================================= Métodos CRUD para Pedido =========================================================
 var pedidosItems = app.MapGroup("/Pedidos");
 
 pedidosItems.MapPost("/", async (Pedido p, UbyTecDb db) =>
@@ -337,7 +434,7 @@ pedidosItems.MapDelete("/{comprobante:int}", async (int comprobante, UbyTecDb db
 });
 
 
-// Métodos CRUD para Productos =================================================================================================================
+// ========================================================= Métodos CRUD para Productos =========================================================
 var productosItems = app.MapGroup("/Productos");
 
 productosItems.MapPost("/", async (Producto p, UbyTecDb db) =>
@@ -387,7 +484,7 @@ productosItems.MapDelete("/{nombre}", async (string? nombre, UbyTecDb db) =>
 });
 
 
-// Métodos CRUD para Producto_Pedido =================================================================================================================
+// ========================================================= Métodos CRUD para Producto_Pedido =========================================================
 
 var productosPedidosItems = app.MapGroup("/ProductosPedidos");
 
@@ -433,7 +530,7 @@ productosPedidosItems.MapDelete("/{comprobante:int}/{pr_nombre}/{co_cedula:int}"
 });
 
 
-// Métodos CRUD para Repartidor =================================================================================================================
+// ========================================================= Métodos CRUD para Repartidor =========================================================
 var repartidorItems = app.MapGroup("/Repartidores");
 
 repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
@@ -452,6 +549,17 @@ repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
 repartidorItems.MapGet("/{usuario}", async (string? usuario, UbyTecDb db) =>
 {
     return await db.repartidor.FindAsync(usuario) is Repartidor r ? Results.Ok(r) : Results.NotFound();
+});
+
+
+// Login repartidor
+repartidorItems.MapGet("/Login/{usuario}/{password}", async (string? usuario, string? password, UbyTecDb db) =>
+{
+    var repartidorLogin = await db.repartidor.FindAsync(usuario);
+    if (repartidorLogin is null) return Results.NotFound();
+    if (password == null) return Results.NotFound();
+    if (repartidorLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    return Results.Ok(repartidorLogin);
 });
 
 repartidorItems.MapGet("", async (UbyTecDb db) => await db.repartidor.ToListAsync());
@@ -486,7 +594,7 @@ repartidorItems.MapDelete("/{usuario}", async (string? usuario, UbyTecDb db) =>
 
 
 
-// Métodos CRUD para Telefono Admin =================================================================================================================
+// ========================================================= Métodos CRUD para Telefono Admin =========================================================
 var telefonosAdminItems = app.MapGroup("/Telefonos_Admin");
 
 telefonosAdminItems.MapPost("/", async (TelefonoAdmin t, UbyTecDb db) =>
@@ -537,7 +645,7 @@ telefonosAdminItems.MapDelete("/{a_usuario}/{telefono:int}", async (string a_usu
     return Results.NoContent();
 });
 
-// Métodos CRUD para Telefono Rep =================================================================================================================
+// ========================================================= Métodos CRUD para Telefono Rep =========================================================
 var telefonosRepItems = app.MapGroup("/Telefonos_Rep");
 
 telefonosRepItems.MapPost("/", async (TelefonoRep t, UbyTecDb db) =>
@@ -586,7 +694,7 @@ telefonosRepItems.MapDelete("/{re_usuario}/{telefono:int}", async (string re_usu
 });
 
 
-// Métodos CRUD para Telefono Com =================================================================================================================
+// ========================================================= Métodos CRUD para Telefono Com =========================================================
 var telefonosComItems = app.MapGroup("/Telefonos_Com");
 
 telefonosComItems.MapPost("/", async (TelefonoCom t, UbyTecDb db) =>
@@ -635,7 +743,7 @@ telefonosComItems.MapDelete("/{co_cedula}/{telefono:int}", async (int co_cedula,
     return Results.NoContent();
 });
 
-// Métodos CRUD para Telefono Emp =================================================================================================================
+// ========================================================= Métodos CRUD para Telefono Emp =========================================================
 var telefonosEmpItems = app.MapGroup("/Telefonos_Emp");
 
 telefonosEmpItems.MapPost("/", async (TelefonoEmp t, UbyTecDb db) =>

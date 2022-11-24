@@ -51,18 +51,45 @@ $$
 			else Raise 'Este pedido ya se encuentra en camino o ha llegado a su destino';
 			end if;
 			update repartidor set estado = 'No disponible' where exists(select * from pedido where re_usuario = usuario and pedido.estado='En camino');
+			update producto_pedido set re_usuario = (select re_usuario from pedido where comprobante = comprobante_id) where producto_pedido.comprobante = comprobante_id;
 		end if;
 	end
 $$
 language plpgsql;
 
- 
 
-select * from pedido;
-select * from repartidor;
+/*Procedimiento que permite eliminar administradores afiliado y sus teléfonos guardados*/
+create or replace procedure eliminarAdmin (usuario_id varchar(20))
+as
+$$
+	begin
+		Delete from telefono_admin where a_usuario = usuario_id;
+		Delete from administrador_afiliado where usuario = usuario_id;
+	end
+$$
+language plpgsql;
 
+/*Procedimiento que permite eliminar comercios afiliados y sus teléfonos guardados*/
+create or replace procedure eliminarComercio (cedula_id int)
+as
+$$
+	begin
+		Delete from telefono_com where co_cedula = cedula_id;
+		Delete from comercio_afiliado where cedula = cedula_id;
+	end
+$$
+language plpgsql;
 
-
+/*Procedimiento que permite eliminar empleados y sus teléfonos guardados*/
+create or replace procedure eliminarEmpleado (cedula_id int)
+as
+$$
+	begin
+		Delete from telefono_emp where e_cedula = cedula_id;
+		Delete from empleado where cedula = cedula_id;
+	end
+$$
+language plpgsql;
 
 
 

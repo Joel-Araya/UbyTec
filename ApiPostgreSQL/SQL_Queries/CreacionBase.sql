@@ -145,12 +145,12 @@ create table telefono_com(
 
 
 create table producto_pedido (
+	comprobante int not NULL,
 	pr_nombre varchar (20) not NULL,
 	co_cedula int not NULL,
-	comprobante int not NULL,
 	re_usuario varchar(20),
 	cantidad int,
-	PRIMARY KEY (pr_nombre, co_cedula,	comprobante)
+	PRIMARY KEY (comprobante, pr_nombre, co_cedula)
 );
 
 

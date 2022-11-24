@@ -7,6 +7,7 @@ begin
 	Raise 'No es posible eliminar a este repartidor porque está entregando un pedido';
 	
 	else
+		Delete from telefono_rep where re_usuario=old.usuario;
 		Delete from repartidor where usuario=old.usuario;
 	end if;
 end

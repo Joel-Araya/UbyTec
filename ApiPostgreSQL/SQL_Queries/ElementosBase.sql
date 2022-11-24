@@ -87,6 +87,15 @@ Insert into telefono_admin values (22335544, 'admin10');
 Insert into telefono_admin values (22335544, 'admin02');
 Insert into telefono_admin values (22335544, 'admin06');
 
+
+Insert into telefono_emp values (35463563,95);
+Insert into telefono_emp values (89676421,95);
+Insert into telefono_emp values (76356578,95);
+Insert into telefono_emp values (88990011,21);
+Insert into telefono_emp values (42445656,2);
+
+
+
 select * from telefono_admin;
 
 
