@@ -18,14 +18,14 @@ export class EditarRepartidorComponent implements OnInit {
 ;
   datosRepartidor!:Datos;
   editarForm = new FormGroup({
-    usuario: new FormControl(''),
-    correo: new FormControl(''),
-    password: new FormControl(''),
-    nombre: new FormControl(''),
-    provincia: new FormControl(''),
-    canton: new FormControl(''),
-    distrito: new FormControl(''),
-    estado: new FormControl(''),
+    usuario: new FormControl('', {nonNullable: true}),
+    correo: new FormControl('', {nonNullable: true}),
+    password: new FormControl('', {nonNullable: true}),
+    nombre: new FormControl('', {nonNullable: true}),
+    provincia: new FormControl('', {nonNullable: true}),
+    canton: new FormControl('', {nonNullable: true}),
+    distrito: new FormControl('', {nonNullable: true}),
+    estado: new FormControl('', {nonNullable: true}),
   });
 
   ngOnInit(): void {
