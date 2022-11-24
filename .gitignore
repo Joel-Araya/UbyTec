@@ -33,3 +33,4 @@ ApiPostgreSQL/UbyTecAPI/UbyTecAPI/obj/project.assets.json
 ApiPostgreSQL/UbyTecAPI/UbyTecAPI/obj/project.nuget.cache
 ApiPostgreSQL/UbyTecAPI/UbyTecAPI/obj/UbyTecAPI.csproj.nuget.dgspec.json
 ApiPostgreSQL/UbyTecAPI/UbyTecAPI/obj/UbyTecAPI.csproj.nuget.g.props
+*.dll
