@@ -387,6 +387,51 @@ productosItems.MapDelete("/{nombre}", async (string? nombre, UbyTecDb db) =>
 });
 
 
+// Métodos CRUD para Producto_Pedido =================================================================================================================
+
+var productosPedidosItems = app.MapGroup("/ProductosPedidos");
+
+productosPedidosItems.MapPost("/", async (ProductoPedido p, UbyTecDb db) =>
+{
+    db.producto_pedido.Add(p);
+    await db.SaveChangesAsync();
+    return Results.Created($"producto_pedido/{p.comprobante}", p);
+});
+
+productosPedidosItems.MapGet("/{comprobante:int}", async (int comprobante, UbyTecDb db) =>
+{
+    var productoPedido= db.producto_pedido.Where(x => x.comprobante.Equals(comprobante));
+    return productoPedido;
+});
+
+productosPedidosItems.MapGet("", async (UbyTecDb db) => await db.producto_pedido.ToListAsync());
+
+productosPedidosItems.MapPut("/{comprobante}", async (int comprobante, ProductoPedido p, UbyTecDb db) =>
+{
+    if (p.comprobante != comprobante) return Results.BadRequest();
+    var productoPedido = await db.producto_pedido.FindAsync(comprobante, p.pr_nombre,p.co_cedula);
+    if (productoPedido is null) return Results.NotFound();
+
+    
+    productoPedido.pr_nombre= p.pr_nombre;
+    productoPedido.co_cedula = p.co_cedula; //Llave foránea //Revisar si esto se debe poder cambiar
+    productoPedido.comprobante= comprobante;
+    productoPedido.re_usuario= p.re_usuario;
+    productoPedido.cantidad= p.cantidad;
+
+    await db.SaveChangesAsync();
+    return Results.Ok(productoPedido);
+});
+
+productosPedidosItems.MapDelete("/{comprobante:int}/{pr_nombre}/{co_cedula:int}", async (string? pr_nombre, int co_cedula, int comprobante, UbyTecDb db) =>
+{
+    var productoPedido = await db.producto_pedido.FindAsync(pr_nombre,co_cedula,comprobante);
+    if (productoPedido is null) return Results.NotFound();
+    db.producto_pedido.Remove(productoPedido);
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+});
+
 
 // Métodos CRUD para Repartidor =================================================================================================================
 var repartidorItems = app.MapGroup("/Repartidores");

@@ -1,3 +1,4 @@
+/*Procedimiento almacenado que se encarga de actualizar el pedido y el repartidor cuando este se ha finalizado*/
 create or replace procedure recepcion_pedido (comprobante_id int, re_usuario_id varchar(20))
 as
 $$
@@ -21,7 +22,7 @@ $$
 language plpgsql;
 
 
-
+/*Procedimiento que verifica y asigna repartidores disponibles a un pedido de acuerdo a la cercanía de estos*/
 create or replace procedure set_pedido (comprobante_id int, provincia_ped varchar(20), canton_ped varchar(20), distrito_ped varchar(20))
 as
 $$

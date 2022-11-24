@@ -124,3 +124,6 @@ C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0
 C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.pdb
 C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\UbyTecAPI.genruntimeconfig.cache
 C:\Users\Admin\Desktop\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\obj\Debug\net7.0\ref\UbyTecAPI.dll
+D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\Joel\Estudio\Tec\Progra\Bases de datos\UbyTec\ApiPostgreSQL\UbyTecAPI\UbyTecAPI\bin\Debug\net7.0\System.CodeDom.dll

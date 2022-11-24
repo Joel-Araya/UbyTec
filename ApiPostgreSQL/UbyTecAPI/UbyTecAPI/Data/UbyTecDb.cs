@@ -20,7 +20,7 @@ namespace UbyTecAPI.Data
         public DbSet<TelefonoCom> telefono_com => Set<TelefonoCom>();
         public DbSet<TelefonoRep> telefono_rep=> Set<TelefonoRep>();
         public DbSet<TelefonoEmp> telefono_emp=> Set<TelefonoEmp>();
-
+        public DbSet<ProductoPedido> producto_pedido => Set<ProductoPedido>();
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace UbyTecAPI.Data
             modelBuilder.Entity<TelefonoRep>().HasKey(x => new { x.telefono, x.re_usuario });
             modelBuilder.Entity<TelefonoCom>().HasKey(x => new { x.telefono, x.co_cedula });
             modelBuilder.Entity<TelefonoEmp>().HasKey(x => new { x.telefono, x.e_cedula });
-
+            modelBuilder.Entity<ProductoPedido>().HasKey(x => new {x.comprobante, x.pr_nombre, x.co_cedula});
 
         }
     }
