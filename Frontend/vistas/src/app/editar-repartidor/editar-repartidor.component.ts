@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { data } from 'jquery';
@@ -13,6 +13,8 @@ import { Datos } from './datos.interface';
   styleUrls: ['./editar-repartidor.component.css']
 })
 export class EditarRepartidorComponent implements OnInit {
+  @Input() usuario?: Datos
+  @Output() datosActualizados = new EventEmitter<Datos[]>();
 
   constructor(private activeroute:ActivatedRoute, private router:Router, private api:RepartidoresService) { }
 ;
@@ -48,17 +50,23 @@ export class EditarRepartidorComponent implements OnInit {
   }
 
   postForm(form:Datos){
-    /* console.log(form) */;
-    this.api.putRepartidor(form).subscribe(data =>{
-      
-    });
-  }
-
-  eliminar(){
-    let datos:Datos = this.editarForm.value;
-    this.api.deleteRepartidor(datos).subscribe(data=>{
+    let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
+    this.api.putRepartidor(form, repartidor_usuario).subscribe(data =>{
       console.log(data);
     });
   }
 
+  eliminar(){
+    let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
+    let datos:Datos = this.editarForm.value;
+    this.api.deleteRepartidor(datos,repartidor_usuario).subscribe(data=>{
+      console.log(data);
+    });
+  }
+
+  prueba(){
+    if(this.usuario?.usuario == this.editarForm.value.usuario){
+      console.log(this.editarForm.value.usuario,"hola")
+    }
+  }
 }

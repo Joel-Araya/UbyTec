@@ -23,19 +23,20 @@ export class RepartidoresService {
     return this.http.get<Datos>(direccion)
   }
 
-  putRepartidor(form:Datos):Observable<Datos>{
-    let direccion = environment.apiUrl + "/Repartidores";
+  putRepartidor(form:Datos, usuario:any):Observable<Datos>{
+    let direccion = environment.apiUrl + "/Repartidores/" + usuario;
     return this.http.put<Datos>(direccion, form);
   }
 
-  deleteRepartidor(form:Datos):Observable<Datos>{
-    let direccion = environment.apiUrl + "/Repartidores";
+  deleteRepartidor(form:Datos, usuario:any):Observable<Datos>{
+    let direccion = environment.apiUrl + "/Repartidores/" + usuario;
     let options = {
       headers: new HttpHeaders({
         'Content-type' : 'application/json'
       }),
-      body: form
+      body: form.usuario
     }
     return this.http.delete<Datos>(direccion, options);
   }
+
 }
