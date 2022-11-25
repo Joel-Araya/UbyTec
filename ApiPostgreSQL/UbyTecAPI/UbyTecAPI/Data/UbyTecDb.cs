@@ -21,6 +21,7 @@ namespace UbyTecAPI.Data
         public DbSet<TelefonoRep> telefono_rep=> Set<TelefonoRep>();
         public DbSet<TelefonoEmp> telefono_emp=> Set<TelefonoEmp>();
         public DbSet<ProductoPedido> producto_pedido => Set<ProductoPedido>();
+        public DbSet<VistaListadoPedidos> vistaListadoPedidos => Set<VistaListadoPedidos>();
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,8 +29,9 @@ namespace UbyTecAPI.Data
             modelBuilder.Entity<TelefonoRep>().HasKey(x => new { x.telefono, x.re_usuario });
             modelBuilder.Entity<TelefonoCom>().HasKey(x => new { x.telefono, x.co_cedula });
             modelBuilder.Entity<TelefonoEmp>().HasKey(x => new { x.telefono, x.e_cedula });
-            modelBuilder.Entity<ProductoPedido>().HasKey(x => new {x.comprobante, x.pr_nombre, x.co_cedula});
-
+            modelBuilder.Entity<ProductoPedido>().HasKey(x => new {x.pe_comprobante, x.pr_nombre, x.co_cedula});
+            modelBuilder.Entity<VistaListadoPedidos>(entity => { entity.HasNoKey(); entity.ToView("VistaListadoPedidos");});
+            //modelBuilder.HasDbFunction(typeof().GetMethod(nameof(ActivePostCountForBlog), new[] { typeof(int) })).HasName("get_vista_listado_pedidos");
         }
     }
 }
