@@ -13,24 +13,24 @@
             </div>
         </div>
     </nav>
-    <br><br>
+    <br>
     <div class="container">
-        <form [formGroup]="editarForm" (ngSubmit)="postForm(editarForm.value)">
+        <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
             <div class="form-group">
-                <label for="exampleFormControlInput1">Cédula</label>
-                <input type="text" class="form-control" placeholder="Cédula" formControlName="cedula">
+                <label for="exampleFormControlInput1">Comprobante</label>
+                <input type="text" class="form-control" placeholder="Comprobante" formControlName="comprobante">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Usuario</label>
-                <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
+                <label for="exampleFormControlInput1">Estado</label>
+                <input type="text" class="form-control" placeholder="Estado" formControlName="estado">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Password</label>
-                <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                <label for="exampleFormControlInput1">Cédula cliente</label>
+                <input type="text" class="form-control" placeholder="Cédula cliente" formControlName="c_cedula">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                <label for="exampleFormControlInput1">Usuario repartidor</label>
+                <input type="text" class="form-control" placeholder="Usuario repartidor" formControlName="re_usuario">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Provincia</label>
@@ -46,9 +46,7 @@
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-danger" style="margin-left: 5px;" (click)="eliminar(editarForm.value)">Eliminar</button>
             <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
-
         </form>
     </div>
 </body>

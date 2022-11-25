@@ -55,13 +55,13 @@ export class EditarAdminComercioAfiComponent implements OnInit {
     });
   }
 
-  eliminar(){
-    /* let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
-    let datos:datosAdmin = this.editarForm.value;
-    this.api.deleteAdministrador(datos,repartidor_usuario).subscribe(data=>{
+  eliminar(form:datosAdminAfi){
+    let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
+    let datos:datosAdminAfi = this.editarForm.value;
+    this.api.deleteAdmin(form,repartidor_usuario).subscribe(data=>{
       console.log(data);
     });
-    console.log(datos); */
+    console.log(datos);
   }
 
   salir(){

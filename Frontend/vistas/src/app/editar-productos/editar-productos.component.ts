@@ -48,13 +48,13 @@ export class EditarProductosComponent implements OnInit {
     });
   }
 
-  eliminar(){
-    /* let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
+  eliminar(form:datosProducto){
+    let repartidor_usuario = this.activeroute.snapshot.paramMap.get('nombre');
     let datos:datosProducto = this.editarForm.value;
-    this.api.deleteProducto(datos,repartidor_usuario).subscribe(data=>{
+    this.api.deleteProducto(form,repartidor_usuario).subscribe(data=>{
       console.log(data);
     });
-    console.log(datos); */
+    console.log(datos);
   }
 
   salir(){

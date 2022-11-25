@@ -22,28 +22,24 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Nombre Producto</th>
+          <th scope="col">Cédula comercio</th>
           <th scope="col">Comprobante</th>
-          <th scope="col">Estado</th>
-          <th scope="col">c_cedula</th>
-          <th scope="col">re_usuario</th>
-          <th scope="col">Provincia</th>
-          <th scope="col">Cantón</th>
-          <th scope="col">Distrito</th>
+          <th scope="col">Cantidad</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pedido of pedidos;let i= index" (click)="editarPedido(pedido.comprobante)">
+        <tr *ngFor="let propedido of propedidos;let i= index" (click)="editarPedido(propedido.pe_comprobante)">
           <th scope="row">{{i+1}}</th>
-          <td>{{pedido.comprobante}}</td>
-          <td>{{pedido.estado}}</td>
-          <td>{{pedido.c_cedula}}</td>
-          <td>{{pedido.re_usuario}}</td>
-          <td>{{pedido.provincia}}</td>
-          <td>{{pedido.canton}}</td>
-          <td>{{pedido.distrito}}</td>
+          <td>{{propedido.pr_nombre}}</td>
+          <td>{{propedido.co_cedula}}</td>
+          <td>{{propedido.pe_comprobante}}</td>
+          <td>{{propedido.cantidad}}</td>
         </tr>
       </tbody>
     </table>
+    <br>
+    <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
   </div>
 </body>
 </html>

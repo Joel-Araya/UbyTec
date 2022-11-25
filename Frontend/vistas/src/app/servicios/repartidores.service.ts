@@ -49,9 +49,5 @@ export class RepartidoresService {
 
   }
 
-  delete(id: any):Observable<any>{
-    let direccion = environment.apiUrl + "/Repartidores/" + id;
-    return this.http.delete(direccion);
-  }
 
 }

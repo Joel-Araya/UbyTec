@@ -35,7 +35,9 @@ export class AfiliadosService {
       }),
       body: form
     }
-    return this.http.delete<datosAfiliado>(direccion, options);
+    console.log(usuario);
+    console.log(direccion);
+    return this.http.delete<datosAfiliado>(direccion);
   }
 
   postAfiliado(form:datosAfiliado):Observable<datosAfiliado>{

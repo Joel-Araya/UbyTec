@@ -70,10 +70,4 @@ export class EditarRepartidorComponent implements OnInit {
     this.router.navigate(['repartidores']);
   }
 
-  /* borrarTrabajador(trabajador:Trabajador){
-    this.trabajadorService
-    .borrarTrabajadores(trabajador)
-    .subscribe((trabajadores: Trabajador[]) => this.trabajadoresActualizados.emit(trabajadores));
-  } */
-
 }

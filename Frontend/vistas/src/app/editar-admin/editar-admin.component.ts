@@ -55,13 +55,13 @@ export class EditarAdminComponent implements OnInit {
     });
   }
 
-  eliminar(){
-    /* let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
+  eliminar(form:datosAdmin){
+    let repartidor_usuario = this.activeroute.snapshot.paramMap.get('cedula');
     let datos:datosAdmin = this.editarForm.value;
-    this.api.deleteAdministrador(datos,repartidor_usuario).subscribe(data=>{
+    this.api.deleteAdministrador(form,repartidor_usuario).subscribe(data=>{
       console.log(data);
     });
-    console.log(datos); */
+    console.log(datos);
   }
 
   salir(){

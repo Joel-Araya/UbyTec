@@ -6,63 +6,64 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand mx-3">Solicitud de afiliación</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/menuAfiliados">Volver</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <br>
-      <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre del comercio</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Tipo de comercio</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Teléfonos</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"> 
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Correo</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Número de sinpe</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Administrador</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue;"></h1>
+            <div class="d-flex">
             </div>
-            <button type="button" class="btn btn-primary" (click)="enviarSolicitud()">Enviar Solicitud</button>
         </div>
-      </div>
+    </nav>
+    <br>
+    <div class="container">
+        <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cédula</label>
+                <input type="text" class="form-control" placeholder="Cédula" formControlName="cedula">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Tipo de Comercio</label>
+                <input type="text" class="form-control" placeholder="Tipo de Comercio" formControlName="tipo_comercio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre del Comercio</label>
+                <input type="text" class="form-control" placeholder="Nombre del Comercio" formControlName="nombre_comercio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Número de sinpe</label>
+                <input type="text" class="form-control" placeholder="Número de sinpe" formControlName="num_sinpe">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Administrador del comercio</label>
+                <input type="text" class="form-control" placeholder="Administrador del comercio" formControlName="administrador_comercio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Correo</label>
+                <input type="text" class="form-control" placeholder="Correo" formControlName="correo">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provincia</label>
+                <input type="text" class="form-control" placeholder="Provincia" formControlName="provincia">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cantón</label>
+                <input type="text" class="form-control" placeholder="Cantón" formControlName="canton">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Distrito</label>
+                <input type="text" class="form-control" placeholder="Distrito" formControlName="distrito">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Usuario del Administrador</label>
+                <input type="text" class="form-control" placeholder="Usuario del Administrador" formControlName="a_usuario">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Estado</label>
+                <input type="text" class="form-control" placeholder="Estado" formControlName="estado">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
+        </form>
+    </div>
 </body>
 </html>

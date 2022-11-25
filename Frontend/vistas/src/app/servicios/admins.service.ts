@@ -35,7 +35,9 @@ export class AdminsService {
       }),
       body: form
     }
-    return this.http.delete<datosAdmin>(direccion, options);
+    console.log(usuario);
+    console.log(direccion);
+    return this.http.delete<datosAdmin>(direccion);
   }
 
   postAdministrador(form:datosAdmin):Observable<datosAdmin>{

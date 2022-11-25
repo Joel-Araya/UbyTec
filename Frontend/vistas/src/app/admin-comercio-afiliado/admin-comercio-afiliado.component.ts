@@ -20,12 +20,20 @@ export class AdminComercioAfiliadoComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que nos lleva al Administrador afiliado que se desea editar
+   * @param usuario 
+   */
   editarAdminAfiliado(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['editarAdminComerAfi', usuario]);
   }
 
+  /**
+   * Método que nos dirige a donde se inserta un Administrador afiliado
+   */
   nuevoAdminAfiliado(){
     this.router.navigate(['insertarAdminComerAfi']);
   }
+  
 }
