@@ -219,7 +219,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "$ref": "#/definitions/ObjectId"
         },
         "name": {
           "type": "string"
@@ -235,11 +235,37 @@
         }
       }
     },
+    "ObjectId": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "machine": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "increment": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "creationTime": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
     "Product": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "$ref": "#/definitions/ObjectId"
         },
         "name": {
           "type": "string"

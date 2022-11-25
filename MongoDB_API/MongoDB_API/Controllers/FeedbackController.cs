@@ -46,7 +46,7 @@ namespace MongoDB_API.Controllers
                 ModelState.AddModelError("Name", "The product shouldn't be empty");
 
             }
-            feedback.Id = id;
+            feedback.Id = new MongoDB.Bson.ObjectId(id);
             await db.UpdateFeedback(feedback);
             return Created("Created", true);
         }

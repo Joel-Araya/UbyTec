@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,11 @@ namespace MongoDB_API.Models
     public class Product
     {
         [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public string Id { get; set; }
+        //[BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+
+        [FromQuery] 
+        public ObjectId Id { get; set; }
+
         public string Name { get; set; }
         public int Price { get; set; }
 
