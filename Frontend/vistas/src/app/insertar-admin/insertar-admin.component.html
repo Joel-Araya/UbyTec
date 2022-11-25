@@ -1,56 +1,53 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-          <div class="modal-body">
-            <div class="container">
-                <div class="row" >
-                    <div class="col">
-                        <div *ngIf="empleado">
-                          <div class="input-group input-group-sm mb-3">
-                              <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.cedula">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm" >Usuario</span>
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.usuario">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.password">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                              <span class="input-group-text" id="inputGroup-sizing-sm">Nombre completo</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.nombre">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                              <span class="input-group-text" id="inputGroup-sizing-sm">Provincia</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.provincia">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                              <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.canton">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                              <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="empleado.distrito">
-                            </div>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <a (click)="agregarAdministrador(empleado)" type="button" class="btn btn-primary">Insertar</a>
-                              <a (click)="borrarAdministrador(empleado)" *ngIf="empleado.cedula" type="submit" class="btn btn-primary" style="margin-top: 20;">Borrar</a>
-                              <a (click)="actualizarAdministrador(empleado)" *ngIf="empleado.cedula" type="submit" class="btn btn-primary" style="margin-top: 20;">Guardar</a>   
-                          </div>
-                        </div>
-                    </div>
-
-                </div>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue;"></h1>
+            <div class="d-flex">
             </div>
-            
-
-      </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cédula</label>
+                <input type="text" class="form-control" placeholder="Cédula" formControlName="cedula">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Usuario</label>
+                <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Password</label>
+                <input type="text" class="form-control" placeholder="Password" formControlName="password">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provincia</label>
+                <input type="text" class="form-control" placeholder="Provincia" formControlName="provincia">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cantón</label>
+                <input type="text" class="form-control" placeholder="Cantón" formControlName="canton">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Distrito</label>
+                <input type="text" class="form-control" placeholder="Distrito" formControlName="distrito">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
+        </form>
     </div>
-  </div>
+</body>
+</html>

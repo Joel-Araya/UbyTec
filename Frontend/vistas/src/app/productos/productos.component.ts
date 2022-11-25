@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductosService } from '../servicios/productos.service';
 import { Producto } from './productos.model';
 
 @Component({
@@ -8,29 +10,23 @@ import { Producto } from './productos.model';
 })
 export class ProductosComponent implements OnInit {
 
-  constructor() { }
+  productos:Producto[]=[];
+
+  constructor(private api:ProductosService, private router:Router) { }
 
   ngOnInit(): void {
+    this.api.getProductos().subscribe(data =>{
+      this.productos = data;
+    })
   }
 
-  onEdit(item: any) {
-    debugger;
-    this.productos.forEach(element => {
-      element.isEdit = false;
-    });
-    item.isEdit = true;
+  editarProducto(usuario: any){
+    /* console.log(usuario) */
+    this.router.navigate(['editarProducto', usuario]);
   }
 
-  productos:Producto[]=[]
-
-  agregarProducto(){
-    let productos = new Producto(this.Nombre, this.Categoria, this.Precio, this.IsEdit)
-    this.productos.push(productos)
+  nuevoProducto(){
+    this.router.navigate(['insertarProducto']);
   }
-
-  Nombre:string="";
-  Categoria:string="";
-  Precio:string="";
-  IsEdit:boolean=false;
 
 }

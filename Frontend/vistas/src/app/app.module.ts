@@ -31,9 +31,14 @@ import { InsertarAdminComponent } from './insertar-admin/insertar-admin.componen
 import { ObjToArray } from './objToArray.pipe';
 import { InsertarRepartidorComponent } from './insertar-repartidor/insertar-repartidor.component';
 import { EditarRepartidorComponent } from './editar-repartidor/editar-repartidor.component';
-
-
-
+import { EditarAdminComponent } from './editar-admin/editar-admin.component';
+import { EditarAfiliadoComponent } from './editar-afiliado/editar-afiliado.component';
+import { InsertarAfiliadoComponent } from './insertar-afiliado/insertar-afiliado.component';
+import { InsertarAdminComercioAfiComponent } from './insertar-admin-comercio-afi/insertar-admin-comercio-afi.component';
+import { EditarAdminComercioAfiComponent } from './editar-admin-comercio-afi/editar-admin-comercio-afi.component';
+import { EditarProductosComponent } from './editar-productos/editar-productos.component';
+import { InsertarProductosComponent } from './insertar-productos/insertar-productos.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 
 const appRoutes:Routes=[
   {path: '', component:LoginComponent},
@@ -58,6 +63,14 @@ const appRoutes:Routes=[
   {path: 'pro', component: CarritoProductsComponent},
   {path: 'editarRepartidor/:usuario', component: EditarRepartidorComponent},
   {path: 'insertarRepartidor', component:InsertarRepartidorComponent},
+  {path: 'editarAdmin/:cedula', component:EditarAdminComponent},
+  {path: 'insertarAdmin', component:InsertarAdminComponent},
+  {path: 'editarAfiliado/:cedula', component:EditarAfiliadoComponent},
+  {path: 'insertarAfiliado', component:InsertarAfiliadoComponent},
+  {path: 'editarAdminComerAfi/:usuario', component:EditarAdminComercioAfiComponent},
+  {path: 'insertarAdminComerAfi', component:InsertarAdminComercioAfiComponent},
+  {path: 'editarProducto/:nombre', component:EditarProductosComponent},
+  {path: 'insertarProducto', component:InsertarProductosComponent},
 
 ]
 
@@ -85,6 +98,15 @@ const appRoutes:Routes=[
     ObjToArray,
     InsertarRepartidorComponent,
     EditarRepartidorComponent,
+    EditarAdminComponent,
+    EditarAfiliadoComponent,
+    InsertarAfiliadoComponent,
+    InsertarAdminComercioAfiComponent,
+    EditarAdminComercioAfiComponent,
+    EditarProductosComponent,
+    InsertarProductosComponent,
+    EditarClienteComponent,
+
   ],
   imports: [
     BrowserModule,

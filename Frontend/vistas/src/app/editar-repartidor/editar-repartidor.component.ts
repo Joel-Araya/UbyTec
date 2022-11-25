@@ -13,11 +13,11 @@ import { Datos } from './datos.interface';
   styleUrls: ['./editar-repartidor.component.css']
 })
 export class EditarRepartidorComponent implements OnInit {
-  @Input() usuario?: Datos
+  @Input() usuario?: Datos;
   @Output() datosActualizados = new EventEmitter<Datos[]>();
   repartidores:Repartidor[]=[];
   constructor(private activeroute:ActivatedRoute, private router:Router, private api:RepartidoresService) { }
-;
+
   datosRepartidor!:Datos;
   editarForm = new FormGroup({
     usuario: new FormControl('', {nonNullable: true}),
@@ -32,6 +32,7 @@ export class EditarRepartidorComponent implements OnInit {
 
   ngOnInit(): void {
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
+    
     /* console.log(repartidor_usuario); */
     this.api.getUnRepartidor(repartidor_usuario).subscribe(data =>{
       this.datosRepartidor = data;
@@ -62,15 +63,17 @@ export class EditarRepartidorComponent implements OnInit {
     this.api.deleteRepartidor(form,repartidor_usuario).subscribe(data=>{
       console.log(data);
     });
+    console.log(datos);
   }
 
- 
-
-
-
-  prueba(){
-    if(this.usuario?.usuario == this.editarForm.value.usuario){
-      console.log(this.editarForm.value.usuario,"hola")
-    }
+  salir(){
+    this.router.navigate(['repartidores']);
   }
+
+  /* borrarTrabajador(trabajador:Trabajador){
+    this.trabajadorService
+    .borrarTrabajadores(trabajador)
+    .subscribe((trabajadores: Trabajador[]) => this.trabajadoresActualizados.emit(trabajadores));
+  } */
+
 }

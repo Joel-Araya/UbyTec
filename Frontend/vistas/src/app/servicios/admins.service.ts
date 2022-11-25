@@ -1,35 +1,51 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Administrador } from '../administradores/admins.model';
+import { datosAdmin } from '../editar-admin/datos.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminsService {
-  private url = "Empleados"
 
   constructor(private http: HttpClient) { }
 
-  public getEmpleados() : Observable<Administrador[]> {
-    return this.http.get<Administrador[]>(`${environment.apiUrl}/${this.url}`)
+  getAdministradores():  Observable<Administrador[]>{
+    let direccion = environment.apiUrl + "/Empleados";
+    return this.http.get<Administrador[]>(direccion);
   }
 
-  public actualizarEmpleados(empleado: Administrador) : Observable<Administrador[]> {
-    return this.http.put<Administrador[]>(`${environment.apiUrl}/${this.url}`,
-    empleado);
+  getUnAdministrador(usuario: any):Observable<datosAdmin>{
+    let direccion = environment.apiUrl + "/Empleados/" + usuario;
+    return this.http.get<datosAdmin>(direccion)
   }
 
-  public agregarEmpleados(empleado: Administrador) : Observable<Administrador[]> {
-    return this.http.post<Administrador[]>(`${environment.apiUrl}/${this.url}`,
-    empleado);
+  putAdministrador(form:datosAdmin, usuario:any):Observable<datosAdmin>{
+    let direccion = environment.apiUrl + "/Empleados/" + usuario;
+    return this.http.put<datosAdmin>(direccion, form);
+  }
+
+  deleteAdministrador(form:datosAdmin, usuario:any):Observable<datosAdmin>{
+    let direccion = environment.apiUrl + "/Empleados/" + usuario;
+    let options = {
+      headers: new HttpHeaders({
+        'Content-type' : 'application/json'
+      }),
+      body: form
+    }
+    return this.http.delete<datosAdmin>(direccion, options);
+  }
+
+  postAdministrador(form:datosAdmin):Observable<datosAdmin>{
+    let direccion = environment.apiUrl + "/Empleados";
+    return this.http.post<datosAdmin>(direccion, form);
 
   }
 
-  public borrarEmpleados(cliente: Administrador) : Observable<Administrador[]> {
-    return this.http.delete<Administrador[]>(
-      `${environment.apiUrl}/${this.url}/${cliente.cedula}`);
-
+  delete(id: any):Observable<any>{
+    let direccion = environment.apiUrl + "/Empleados/" + id;
+    return this.http.delete(direccion);
   }
 }

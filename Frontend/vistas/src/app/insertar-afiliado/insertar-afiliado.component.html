@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue;"></h1>
+            <div class="d-flex">
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cédula</label>
+                <input type="text" class="form-control" placeholder="Cédula" formControlName="cedula">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Tipo de Comercio</label>
+                <input type="text" class="form-control" placeholder="Tipo de Comercio" formControlName="tipo_comercio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre del Comercio</label>
+                <input type="text" class="form-control" placeholder="Nombre del Comercio" formControlName="nombre_comercio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Número de sinpe</label>
+                <input type="text" class="form-control" placeholder="Número de sinpe" formControlName="num_sinpe">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Administrador del comercio</label>
+                <input type="text" class="form-control" placeholder="Administrador del comercio" formControlName="administrador_comercio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Correo</label>
+                <input type="text" class="form-control" placeholder="Correo" formControlName="correo">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provincia</label>
+                <input type="text" class="form-control" placeholder="Provincia" formControlName="provincia">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cantón</label>
+                <input type="text" class="form-control" placeholder="Cantón" formControlName="canton">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Distrito</label>
+                <input type="text" class="form-control" placeholder="Distrito" formControlName="distrito">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Usuario del Administrador</label>
+                <input type="text" class="form-control" placeholder="Usuario del Administrador" formControlName="a_usuario">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Estado</label>
+                <input type="text" class="form-control" placeholder="Estado" formControlName="estado">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
+        </form>
+    </div>
+</body>
+</html>

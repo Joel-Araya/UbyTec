@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue;"></h1>
+            <div class="d-flex">
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Cédula Comercio</label>
+                <input type="text" class="form-control" placeholder="Cédula Comercio" formControlName="co_cedula">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Categoría</label>
+                <input type="text" class="form-control" placeholder="Categoría" formControlName="categoria">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Precio</label>
+                <input type="text" class="form-control" placeholder="Precio" formControlName="precio">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Fotos</label>
+                <input type="text" class="form-control" placeholder="Fotos" formControlName="foto">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
+        </form>
+    </div>
+</body>
+</html>

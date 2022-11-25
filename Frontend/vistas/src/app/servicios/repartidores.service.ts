@@ -36,12 +36,22 @@ export class RepartidoresService {
       headers: new HttpHeaders({
         'Content-type' : 'application/json'
       }),
-      body: form.usuario
+      body: form
     }
     console.log(usuario);
     console.log(direccion);
     return this.http.delete<Datos>(direccion);
   }
 
+  postRepartidor(form:Datos):Observable<Datos>{
+    let direccion = environment.apiUrl + "/Repartidores";
+    return this.http.post<Datos>(direccion, form);
+
+  }
+
+  delete(id: any):Observable<any>{
+    let direccion = environment.apiUrl + "/Repartidores/" + id;
+    return this.http.delete(direccion);
+  }
 
 }

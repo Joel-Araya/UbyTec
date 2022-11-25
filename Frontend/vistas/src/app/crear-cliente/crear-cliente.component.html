@@ -32,49 +32,53 @@
                   </svg>
             </div>
             <br>
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Cédula</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Cédula</label>
+                  <input type="text" class="form-control" placeholder="Cédula" formControlName="cedula">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Usuario</label>
+                  <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Apellidos</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Password</label>
+                  <input type="text" class="form-control" placeholder="Password" formControlName="password">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Provincia</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Cantón</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Primer apellido</label>
+                  <input type="text" class="form-control" placeholder="Primer apellido" formControlName="apellido1">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Distrito</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Segundo apellido</label>
+                <input type="text" class="form-control" placeholder="Segundo apellido" formControlName="apellido2">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Provincia</label>
+                  <input type="text" class="form-control" placeholder="Provincia" formControlName="provincia">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Teléfonos</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"> 
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Cantón</label>
+                  <input type="text" class="form-control" placeholder="Cantón" formControlName="canton">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Usuario</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Distrito</label>
+                  <input type="text" class="form-control" placeholder="Distrito" formControlName="distrito">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Teléfono</label>
+                  <input type="text" class="form-control" placeholder="Teléfono" formControlName="telefono">
               </div>
-              <button type="button" class="btn btn-primary">Crear</button>
-            </div>
+              <br>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-dark" style="margin-left: 5px;" (click)="salir()">Salir</button>
+          </form>
         </div>
       </div>
+    </div>
 </body>
 </html>

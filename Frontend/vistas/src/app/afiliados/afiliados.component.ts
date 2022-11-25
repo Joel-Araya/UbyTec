@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AfiliadosService } from '../servicios/afiliados.service';
 import { Afiliado } from './afiliados.model';
 
 @Component({
@@ -8,36 +10,22 @@ import { Afiliado } from './afiliados.model';
 })
 export class AfiliadosComponent implements OnInit {
 
-  constructor() { }
+  afiliados:Afiliado[]=[];
+
+  constructor(private api:AfiliadosService, private router:Router) { }
 
   ngOnInit(): void {
+    this.api.getAfiliados().subscribe(data =>{
+      this.afiliados = data;
+    })
   }
 
-  onEdit(item: any) {
-    debugger;
-    this.afiliados.forEach(element => {
-      element.isEdit = false;
-    });
-    item.isEdit = true;
+  editarAfiliado(usuario: any){
+    /* console.log(usuario) */
+    this.router.navigate(['editarAfiliado', usuario]);
   }
 
-  afiliados:Afiliado[]=[]
-
-  agregarAfiliado(){
-    let afiliados = new Afiliado(this.Cedula, this.NombreComercio, this.TipoComercio, this.Provincia, this.Canton, this.Distrito,
-       this.Telefonos, this.Correo, this.NumSinpe, this.Admin, this.IsEdit)
-    this.afiliados.push(afiliados)
+  nuevoAfiliado(){
+    this.router.navigate(['insertarAfiliado']);
   }
-
-  Cedula:number=0;
-  NombreComercio:string="";
-  TipoComercio:string="";
-  Provincia:string="";
-  Canton:string="";
-  Distrito:string="";
-  Telefonos:string="";
-  Correo:string="";
-  NumSinpe:string="";
-  Admin:string="";
-  IsEdit:boolean=false;
 }

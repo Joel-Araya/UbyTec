@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminComercioAfiService } from '../servicios/admin-comercio-afi.service';
 import { AdminComercioAfiliado } from './admin-comercio-afiliado.model';
 
 @Component({
@@ -8,33 +10,22 @@ import { AdminComercioAfiliado } from './admin-comercio-afiliado.model';
 })
 export class AdminComercioAfiliadoComponent implements OnInit {
 
-  constructor() { }
+  adminsAfi:AdminComercioAfiliado[]=[];
+
+  constructor(private api:AdminComercioAfiService, private router:Router) { }
 
   ngOnInit(): void {
+    this.api.getAdmins().subscribe(data =>{
+      this.adminsAfi = data;
+    })
   }
 
-  onEdit(item: any) {
-    debugger;
-    this.adminComerAfiliados.forEach(element => {
-      element.isEdit = false;
-    });
-    item.isEdit = true;
+  editarAdminAfiliado(usuario: any){
+    /* console.log(usuario) */
+    this.router.navigate(['editarAdminComerAfi', usuario]);
   }
 
-  adminComerAfiliados:AdminComercioAfiliado[]=[]
-
-  agregaradminComerAfiliados(){
-    let afiliados = new AdminComercioAfiliado(this.Nombre, this.Provincia, this.Canton, this.Distrito,
-      this.Telefonos, this.Usuario, this.Password, this.IsEdit)
-    this.adminComerAfiliados.push(afiliados)
+  nuevoAdminAfiliado(){
+    this.router.navigate(['insertarAdminComerAfi']);
   }
-  
-  Nombre:string="";
-  Provincia:string="";
-  Canton:string="";
-  Distrito:string="";
-  Telefonos:string="";
-  Usuario:string="";
-  Password:string="";
-  IsEdit:boolean=false;
 }

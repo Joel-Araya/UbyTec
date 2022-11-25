@@ -1,5 +1,8 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Administrador } from '../administradores/admins.model';
+import { datosAdmin } from '../editar-admin/datos.interface';
 import { AdminsService } from '../servicios/admins.service';
 
 @Component({
@@ -9,34 +12,30 @@ import { AdminsService } from '../servicios/admins.service';
 })
 export class InsertarAdminComponent implements OnInit {
 
-  @Input() empleado?: Administrador;
-  @Output() empleadosActualizados = new EventEmitter<Administrador[]>();
+  nuevoForm = new FormGroup({
+    cedula: new FormControl('', {nonNullable: true}),
+    usuario: new FormControl('', {nonNullable: true}),   
+    password: new FormControl('', {nonNullable: true}),
+    nombre: new FormControl('', {nonNullable: true}),
+    provincia: new FormControl('', {nonNullable: true}),
+    canton: new FormControl('', {nonNullable: true}),
+    distrito: new FormControl('', {nonNullable: true}),
+  });
 
-  constructor(private empleadoService: AdminsService) { }
+  constructor(private api:AdminsService, private router:Router) { }
 
   ngOnInit(): void {
-    
   }
 
-  actualizarAdministrador(empleado:Administrador){
-    this.empleadoService
-    .actualizarEmpleados(empleado)
-    .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
-    
-    console.log(empleado);
+  postForm(form:datosAdmin){
+    this.api.postAdministrador(form).subscribe(data =>{
+      console.log(data)
+    })
   }
 
-  borrarAdministrador(empleado:Administrador){
-    this.empleadoService
-    .borrarEmpleados(empleado)
-    .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
+  salir(){
+    this.router.navigate(['admins']);
   }
 
-  agregarAdministrador(empleado:Administrador){
-    this.empleadoService
-    .agregarEmpleados(empleado)
-    .subscribe((empleados: Administrador[]) => this.empleadosActualizados.emit(empleados));
-    console.log(empleado);
-  }
-
+  
 }

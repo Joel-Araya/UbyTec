@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Datos } from '../editar-repartidor/datos.interface';
+import { Repartidor } from '../repartidores/repartidores.model';
+import { RepartidoresService } from '../servicios/repartidores.service';
 
 @Component({
   selector: 'app-insertar-repartidor',
@@ -7,9 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InsertarRepartidorComponent implements OnInit {
 
-  constructor() { }
+  nuevoForm = new FormGroup({
+    usuario: new FormControl('', {nonNullable: true}),
+    correo: new FormControl('', {nonNullable: true}),
+    password: new FormControl('', {nonNullable: true}),
+    nombre: new FormControl('', {nonNullable: true}),
+    provincia: new FormControl('', {nonNullable: true}),
+    canton: new FormControl('', {nonNullable: true}),
+    distrito: new FormControl('', {nonNullable: true}),
+    estado: new FormControl('', {nonNullable: true}),
+  });
+
+  constructor(private api:RepartidoresService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  postForm(form:Datos){
+    this.api.postRepartidor(form).subscribe(data =>{
+      console.log(data)
+    })
+  }
+
+  salir(){
+    this.router.navigate(['repartidores']);
   }
 
 }
