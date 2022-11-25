@@ -20,11 +20,18 @@ export class ProductosComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que nos permite editar un producto
+   * @param usuario 
+   */
   editarProducto(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['editarProducto', usuario]);
   }
 
+  /**
+   * Método que nos permite insertar un producto
+   */
   nuevoProducto(){
     this.router.navigate(['insertarProducto']);
   }

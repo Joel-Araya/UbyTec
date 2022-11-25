@@ -1,0 +1,57 @@
+
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue;">Administración de afiliaciones</h1>
+            <!-- <div class="d-flex">
+              <button type="button" (click)="crearAdministrador()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Nuevo</button>
+            </div> -->
+        </div>
+      </nav>
+      <br><br>
+      <div class="container">
+        <br>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cédula</th>
+              <th scope="col">Tipo de comercio</th>
+              <th scope="col">Nombre del comercio</th>
+              <th scope="col">Número de sinpe</th>
+              <th scope="col">Administrador del comercio</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Provincia</th>
+              <th scope="col">Cantón</th>
+              <th scope="col">Distrito</th>
+              <th scope="col">Usuario Administrador</th>
+              <th scope="col">estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let soli of solicitudes;let i= index" (click)="administrar(soli.cedula)">
+              <th scope="row">{{i+1}}</th>
+              <td>{{soli.cedula}}</td>
+              <td>{{soli.tipo_comercio}}</td>
+              <td>{{soli.nombre_comercio}}</td>
+              <td>{{soli.num_sinpe}}</td>
+              <td>{{soli.administrador_comercio}}</td>
+              <td>{{soli.correo}}}</td>
+              <td>{{soli.provincia}}</td>
+              <td>{{soli.canton}}</td>
+              <td>{{soli.distrito}}</td>
+              <td>{{soli.a_usuario}}</td>
+              <td>{{soli.estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </body>
+    </html>

@@ -55,6 +55,10 @@ export class EditarAfiliadoComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que envía los datos del nuevo afiliado al api
+   * @param form 
+   */
   postForm(form:datosAfiliado){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('cedula');
     //let ced = Number(repartidor_usuario);
@@ -63,6 +67,10 @@ export class EditarAfiliadoComponent implements OnInit {
     });
   }
 
+  /**
+   * Método que se encarga de eliminar al afiliado
+   * @param form 
+   */
   eliminar(form:datosAfiliado){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('cedula');
     let datos:datosAfiliado = this.editarForm.value;
@@ -72,6 +80,9 @@ export class EditarAfiliadoComponent implements OnInit {
     console.log(datos);
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['afiliados']);
   }

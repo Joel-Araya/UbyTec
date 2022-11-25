@@ -26,12 +26,18 @@ export class InsertarAdminComercioAfiComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Método para enviar los datos de un nuevo administrador afiliado
+   */
   postForm(form:datosAdminAfi){
     this.api.postAdmin(form).subscribe(data =>{
       console.log(data)
     })
   }
 
+  /**
+   * Método para sali
+   */
   salir(){
     this.router.navigate(['comercioAfiliado']);
   }

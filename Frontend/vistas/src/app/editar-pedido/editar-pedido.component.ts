@@ -25,11 +25,18 @@ export class EditarPedidoComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que nos lleva a la pantalla para editar el Pedido que se requiera
+   * @param usuario 
+   */
   editarPedido(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['editarPedido', usuario]);
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['pedidos']);
   }

@@ -14,6 +14,12 @@ export class EditarAdminComponent implements OnInit {
   @Input() usuario?: datosAdmin;
   @Output() datosActualizados = new EventEmitter<datosAdmin[]>();
 
+  /**
+   * Método constructor, se le inyecta el servicio de administrador
+   * @param activeroute 
+   * @param router 
+   * @param api 
+   */
   constructor(private activeroute:ActivatedRoute, private router:Router, private api:AdminsService) { }
 
   datosRepartidor!:datosAdmin;
@@ -47,6 +53,10 @@ export class EditarAdminComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que envía los datos del nuevo administrador al api
+   * @param form 
+   */
   postForm(form:datosAdmin){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('cedula');
     //let ced = Number(repartidor_usuario);
@@ -55,6 +65,10 @@ export class EditarAdminComponent implements OnInit {
     });
   }
 
+  /**
+   * Método que se utiliza para eliminar administradores
+   * @param form 
+   */
   eliminar(form:datosAdmin){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('cedula');
     let datos:datosAdmin = this.editarForm.value;
@@ -64,6 +78,9 @@ export class EditarAdminComponent implements OnInit {
     console.log(datos);
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['admins']);
   }

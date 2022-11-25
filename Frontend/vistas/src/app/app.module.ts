@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -43,6 +43,10 @@ import { EditarClienteComponent } from './editar-cliente/editar-cliente.componen
 import { InsertarPedidoComponent } from './insertar-pedido/insertar-pedido.component';
 import { EditarPedidoComponent } from './editar-pedido/editar-pedido.component';
 import { AsignarPedidoComponent } from './asignar-pedido/asignar-pedido.component';
+import { AceptarRechazarSolicitudComponent } from './aceptar-rechazar-solicitud/aceptar-rechazar-solicitud.component';
+import { AdminAfiliacionVistaAfiliadoComponent } from './admin-afiliacion-vista-afiliado/admin-afiliacion-vista-afiliado.component';
+import { ComerciosCercanosComponent } from './comercios-cercanos/comercios-cercanos.component';
+import { ProductosComercioComponent } from './productos-comercio/productos-comercio.component';
 
 const appRoutes:Routes=[
   {path: '', component:LoginComponent},
@@ -78,8 +82,10 @@ const appRoutes:Routes=[
   {path: 'editarPedido/:comprobante', component:EditarPedidoComponent},
   {path: 'insertarPedido', component:InsertarPedidoComponent},
   {path: 'asignarPedido', component:AsignarPedidoComponent},
-
-
+  {path: 'aceptarRechazar/:cedula', component:AceptarRechazarSolicitudComponent},
+  {path: 'adminAfiliado', component:AdminAfiliacionVistaAfiliadoComponent},
+  {path: 'comerciosCercanos', component:ComerciosCercanosComponent},
+  {path: 'proComercios/:co_cedula', component:ProductosComercioComponent},
 ]
 
 @NgModule({
@@ -116,6 +122,10 @@ const appRoutes:Routes=[
     EditarClienteComponent,
     InsertarPedidoComponent,
     EditarPedidoComponent,
+    AceptarRechazarSolicitudComponent,
+    AdminAfiliacionVistaAfiliadoComponent,
+    ComerciosCercanosComponent,
+    ProductosComercioComponent,
 
 
   ],
@@ -130,6 +140,10 @@ const appRoutes:Routes=[
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }

@@ -30,12 +30,20 @@ export class InsertarAfiliadoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Métdodo para enviar los datos del afiliado
+   * @param form 
+   */
   postForm(form:datosAfiliado){
     this.api.postAfiliado(form).subscribe(data =>{
       console.log(data)
     })
     console.log(form)
   }
+
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['afiliados']);
   }

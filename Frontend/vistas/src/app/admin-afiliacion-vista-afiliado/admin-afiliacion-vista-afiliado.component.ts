@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminComercioAfiliado } from '../admin-comercio-afiliado/admin-comercio-afiliado.model';
 import { AdminComercioAfiService } from '../servicios/admin-comercio-afi.service';
-import { AdminComercioAfiliado } from './admin-comercio-afiliado.model';
 
 @Component({
-  selector: 'app-admin-comercio-afiliado',
-  templateUrl: './admin-comercio-afiliado.component.html',
-  styleUrls: ['./admin-comercio-afiliado.component.css']
+  selector: 'app-admin-afiliacion-vista-afiliado',
+  templateUrl: './admin-afiliacion-vista-afiliado.component.html',
+  styleUrls: ['./admin-afiliacion-vista-afiliado.component.css']
 })
-export class AdminComercioAfiliadoComponent implements OnInit {
+export class AdminAfiliacionVistaAfiliadoComponent implements OnInit {
 
   adminsAfi:AdminComercioAfiliado[]=[];
 
@@ -40,5 +40,5 @@ export class AdminComercioAfiliadoComponent implements OnInit {
   nuevoAdminAfiliado(){
     this.router.navigate(['insertarAdminComerAfi']);
   }
-  
+
 }

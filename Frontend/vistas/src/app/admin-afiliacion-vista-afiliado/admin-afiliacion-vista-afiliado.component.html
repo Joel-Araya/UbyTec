@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">Gestión de Administradores de Comercios Afiliados</h1>
+    </div>
+  </nav>
+  <br><br>
+  <div class="container">
+    <button type="button" class="btn btn-primary" (click)="nuevoAdminAfiliado()">Nuevo</button>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Password</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Cantón</th>
+          <th scope="col">Distrito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let adminAfi of adminsAfi;let i= index" (click)="editarAdminAfiliado(adminAfi.usuario)">
+          <th scope="row">{{i+1}}</th>
+          <td>{{adminAfi.usuario}}</td>
+          <td>{{adminAfi.correo}}</td>
+          <td>{{adminAfi.password}}</td>
+          <td>{{adminAfi.nombre}}</td>
+          <td>{{adminAfi.provincia}}</td>
+          <td>{{adminAfi.canton}}</td>
+          <td>{{adminAfi.distrito}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+

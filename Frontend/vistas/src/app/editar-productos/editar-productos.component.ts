@@ -40,6 +40,10 @@ export class EditarProductosComponent implements OnInit {
     })
   }
 
+  /**
+   * Método para enviar un nuevo producto al api
+   * @param form 
+   */
   postForm(form:datosProducto){
     let nombre_producto = this.activeroute.snapshot.paramMap.get('nombre');
 
@@ -48,6 +52,10 @@ export class EditarProductosComponent implements OnInit {
     });
   }
 
+  /**
+   * Método para eliminar productos
+   * @param form 
+   */
   eliminar(form:datosProducto){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('nombre');
     let datos:datosProducto = this.editarForm.value;
@@ -57,6 +65,9 @@ export class EditarProductosComponent implements OnInit {
     console.log(datos);
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['productos']);
   }

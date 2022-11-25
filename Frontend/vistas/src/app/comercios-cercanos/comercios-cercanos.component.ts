@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AfiliadosService } from '../servicios/afiliados.service';
-import { Afiliado } from './afiliados.model';
+import { comerciosCercanos } from './comercios-cercanos.model';
 
 @Component({
-  selector: 'app-afiliados',
-  templateUrl: './afiliados.component.html',
-  styleUrls: ['./afiliados.component.css']
+  selector: 'app-comercios-cercanos',
+  templateUrl: './comercios-cercanos.component.html',
+  styleUrls: ['./comercios-cercanos.component.css']
 })
-export class AfiliadosComponent implements OnInit {
+export class ComerciosCercanosComponent implements OnInit {
 
-  afiliados:Afiliado[]=[];
+  comercios:comerciosCercanos[]=[];
 
   /**
    * Método constructor, se le inyecta el servicio de afiliado
@@ -21,7 +21,7 @@ export class AfiliadosComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getAfiliados().subscribe(data =>{
-      this.afiliados = data;
+      this.comercios = data;
     })
   }
 
@@ -31,7 +31,7 @@ export class AfiliadosComponent implements OnInit {
    */
   editarAfiliado(usuario: any){
     /* console.log(usuario) */
-    this.router.navigate(['editarAfiliado', usuario]);
+    this.router.navigate(['proComercios', usuario]);
   }
 
   /**
@@ -40,4 +40,5 @@ export class AfiliadosComponent implements OnInit {
   nuevoAfiliado(){
     this.router.navigate(['insertarAfiliado']);
   }
+
 }

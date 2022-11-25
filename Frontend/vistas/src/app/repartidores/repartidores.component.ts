@@ -20,11 +20,18 @@ export class RepartidoresComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que nos permite editar un repartidor
+   * @param usuario 
+   */
   editarRepartidor(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['editarRepartidor', usuario]);
   }
 
+  /**
+   * Método que nos permite editar un repartidor
+   */
   nuevoRepartidor(){
     this.router.navigate(['insertarRepartidor']);
   }

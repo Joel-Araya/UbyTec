@@ -26,12 +26,19 @@ export class InsertarPedidoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Método para insertar un nuevo pedido
+   * @param form 
+   */
   postForm(form:datosPedido){
     this.api.postPedido(form).subscribe(data =>{
       console.log(data)
     })
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['pedidos']);
   }

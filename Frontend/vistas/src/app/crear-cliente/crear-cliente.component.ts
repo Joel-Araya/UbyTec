@@ -29,12 +29,19 @@ export class CrearClienteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Método que envía los datos del nuevo cliente al api
+   * @param form 
+   */
   postForm(form:datosCliente){
     this.api.postCliente(form).subscribe(data =>{
       console.log(data)
     })
   }
 
+  /**
+   * Método para salir 
+   */
   salir(){
     this.router.navigate(['admins']);
   }

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: "https://ubytecapi20221119172130.azurewebsites.net",
+  apiUrl2: "https://mongo03.azurewebsites.net/api"
 };
 
 /*

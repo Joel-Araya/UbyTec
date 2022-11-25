@@ -20,11 +20,18 @@ export class PedidosComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que nos permite editar un pedido
+   * @param usuario 
+   */
   editarPedido(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['editarPedido', usuario]);
   }
 
+  /**
+   * Método que nos permite insertar un pedido
+   */
   nuevoPedido(){
     this.router.navigate(['insertarPedido']);
   }

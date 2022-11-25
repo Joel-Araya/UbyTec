@@ -13,7 +13,10 @@ export class CarritoComponent implements OnInit {
   public product : any = [];
   public grandTotal !: number;
  
-  
+  /**
+   * Método constructor, se le inyecta el servicio de carrito
+   * @param cartService 
+   */
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
@@ -25,11 +28,18 @@ export class CarritoComponent implements OnInit {
   }
   //Metodos para el carrito 
   
+  /**
+   * Método para quitar un item del carrito
+   * @param item 
+   */
   removeItem(item: any){
     this.cartService.removeCartItem(item);
 
   }
 
+  /**
+   * Método para vaciar el carrito
+   */
   emptycart(){
     this.cartService.removeAllCart();
   }

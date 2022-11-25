@@ -27,12 +27,19 @@ export class InsertarAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Método para insertar un nuevo administrador
+   * @param form 
+   */
   postForm(form:datosAdmin){
     this.api.postAdministrador(form).subscribe(data =>{
       console.log(data)
     })
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['admins']);
   }

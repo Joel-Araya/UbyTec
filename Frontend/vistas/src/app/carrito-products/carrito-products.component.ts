@@ -24,6 +24,11 @@ export class CarritoProductsComponent implements OnInit {
       });
     })
   }
+
+  /**
+   * Método para añadir items al carrito
+   * @param item 
+   */
   addtocart(item : any){
     this.cartService.addtoCart(item);
   }

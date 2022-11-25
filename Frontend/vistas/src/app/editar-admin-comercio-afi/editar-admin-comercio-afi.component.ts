@@ -47,6 +47,10 @@ export class EditarAdminComercioAfiComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que envía los datos del nuevo administrador afiliado al api
+   * @param form 
+   */
   postForm(form:datosAdminAfi){
     let usuario_admin = this.activeroute.snapshot.paramMap.get('usuario');
     //let ced = Number(repartidor_usuario);
@@ -55,6 +59,10 @@ export class EditarAdminComercioAfiComponent implements OnInit {
     });
   }
 
+  /**
+   * Método que se encarga de eliminar al administrador afiliado
+   * @param form 
+   */
   eliminar(form:datosAdminAfi){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
     let datos:datosAdminAfi = this.editarForm.value;
@@ -64,6 +72,9 @@ export class EditarAdminComercioAfiComponent implements OnInit {
     console.log(datos);
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['comercioAfiliado']);
   }

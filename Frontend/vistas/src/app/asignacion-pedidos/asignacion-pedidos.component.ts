@@ -12,6 +12,11 @@ export class AsignacionPedidosComponent implements OnInit {
 
   asignaciones:Asignacion[]=[];
 
+  /**
+   * Método constructor, se le inyecta el servicio de pedidos
+   * @param api 
+   * @param router 
+   */
   constructor(private api:PedidosService, private router:Router) { }
 
   ngOnInit(): void {
@@ -20,6 +25,10 @@ export class AsignacionPedidosComponent implements OnInit {
     })
   }
 
+  /**
+   * Método utilizado para que nos envíe a la pantalla de asignar pedido
+   * @param usuario 
+   */
   AsignarPedido(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['asignarPedido', usuario]);

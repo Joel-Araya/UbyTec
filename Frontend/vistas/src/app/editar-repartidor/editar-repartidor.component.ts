@@ -50,6 +50,10 @@ export class EditarRepartidorComponent implements OnInit {
     })
   }
 
+  /**
+   * Método para enviar un nuevo repartidor al api
+   * @param form 
+   */
   postForm(form:Datos){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
     this.api.putRepartidor(form, repartidor_usuario).subscribe(data =>{
@@ -57,6 +61,10 @@ export class EditarRepartidorComponent implements OnInit {
     });
   }
 
+  /**
+   * Método para eliminar repartidores
+   * @param form 
+   */
   eliminar(form:Datos){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
     let datos:Datos = this.editarForm.value;
@@ -66,6 +74,9 @@ export class EditarRepartidorComponent implements OnInit {
     console.log(datos);
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['repartidores']);
   }

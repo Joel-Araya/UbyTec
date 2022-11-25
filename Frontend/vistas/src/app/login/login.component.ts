@@ -23,6 +23,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /**
+   * Aquí se hacen las validaciones necesarias para iniciar sesión
+   * @param form 
+   */
   onLogin(form:any){
  
     this.loginservice.loginByEmailAfiliado(form).subscribe(data =>{

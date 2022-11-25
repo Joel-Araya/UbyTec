@@ -32,12 +32,19 @@ export class SolicitudAfiliacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Método para enviar datos de la solicitud al api
+   * @param form 
+   */
   postForm(form:datosAfiliado){
     this.api.postAfiliado(form).subscribe(data =>{
       console.log(data)
     })
     console.log(form)
   }
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['menuAfiliados']);
   }

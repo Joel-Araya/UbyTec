@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">Comercios Cercanos</h1>
+        <div class="d-flex">
+        </div>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Cédula</th>
+          <th scope="col">Tipo Comercio</th>
+          <th scope="col">Nombre del Comercio</th>
+          <th scope="col">Número de Sinpe</th>
+          <th scope="col">Administrador del comercio</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Cantón</th>
+          <th scope="col">Distrito</th>
+          <th scope="col">Usuario del Administrador</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cercanos of comercios;let i= index" (click)="editarAfiliado(cercanos.cedula)">
+          <th scope="row">{{i+1}}</th>
+          <td>{{cercanos.cedula}}</td>
+          <td>{{cercanos.tipo_comercio}}</td>
+          <td>{{cercanos.nombre_comercio}}</td>
+          <td>{{cercanos.num_sinpe}}</td>
+          <td>{{cercanos.administrador_comercio}}</td>
+          <td>{{cercanos.correo}}</td>
+          <td>{{cercanos.provincia}}</td>
+          <td>{{cercanos.canton}}</td>
+          <td>{{cercanos.distrito}}</td>
+          <td>{{cercanos.a_usuario}}</td>
+          <td>{{cercanos.estado}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

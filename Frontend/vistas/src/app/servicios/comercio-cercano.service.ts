@@ -12,7 +12,8 @@ export class ComercioCercanoService {
   constructor(private http: HttpClient) { }
 
   getComercioAfiliados():  Observable<comerciosCercanos[]>{
-    let direccion = environment.apiUrl + "/Comercios_Afiliados/Aceptados";
+    let direccion = environment.apiUrl + "/Comercios_Afiliados";
     return this.http.get<comerciosCercanos[]>(direccion);
   }
 }
+

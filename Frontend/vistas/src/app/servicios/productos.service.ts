@@ -45,4 +45,9 @@ export class ProductosService {
     return this.http.post<datosProducto>(direccion, form);
 
   }
+
+  getProductosComercio(cedula:any):  Observable<Producto[]>{
+    let direccion = environment.apiUrl + "/Productos/" + cedula;
+    return this.http.get<Producto[]>(direccion);
+  }
 }

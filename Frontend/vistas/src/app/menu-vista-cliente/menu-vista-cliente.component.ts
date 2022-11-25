@@ -15,18 +15,7 @@ export class MenuVistaClienteComponent implements OnInit {
   constructor(private api:ComercioCercanoService, private router:Router) { }
 
   ngOnInit(): void {
-    this.api.getComercioAfiliados().subscribe(data =>{
-      this.comercios = data;
-    })
-  }
 
-  editarRepartidor(usuario: any){
-    /* console.log(usuario) */
-    this.router.navigate(['editarRepartidor', usuario]);
-  }
-
-  nuevoRepartidor(){
-    this.router.navigate(['insertarRepartidor']);
   }
 
 }

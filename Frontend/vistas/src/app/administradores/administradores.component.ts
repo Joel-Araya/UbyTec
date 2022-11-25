@@ -27,7 +27,7 @@ export class AdministradoresComponent implements OnInit {
   }
 
   /**
-   * Método que nos dirige al usuario que se desea editar
+   * Método que nos dirige al administrador que se desea editar
    */
   editarAdmin(usuario: any){
     /* console.log(usuario) */
@@ -35,7 +35,7 @@ export class AdministradoresComponent implements OnInit {
   }
 
   /**
-   * Método que nos dirige a donde se crea un nuevo usuario
+   * Método que nos dirige a donde se crea un nuevo administrador
    */
   nuevoAdmin(){
     this.router.navigate(['insertarAdmin']);

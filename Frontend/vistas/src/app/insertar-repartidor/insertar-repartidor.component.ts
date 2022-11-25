@@ -28,12 +28,19 @@ export class InsertarRepartidorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Método para insertar un nuevo repartidor
+   * @param form 
+   */
   postForm(form:Datos){
     this.api.postRepartidor(form).subscribe(data =>{
       console.log(data)
     })
   }
 
+  /**
+   * Método para salir
+   */
   salir(){
     this.router.navigate(['repartidores']);
   }
