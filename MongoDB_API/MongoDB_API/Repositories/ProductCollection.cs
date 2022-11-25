@@ -16,7 +16,7 @@ namespace MongoDB_API.Repositories
         }
         public async Task DeleteProduct(string id)
         {
-            var filter = Builders<Product>.Filter.Eq(s => s.Id, new ObjectId(id));
+            var filter = Builders<Product>.Filter.Eq(s => s.Id, id);
             await Collection.DeleteOneAsync(filter);
         }
 
@@ -35,7 +35,7 @@ namespace MongoDB_API.Repositories
         {
             await Collection.InsertOneAsync(product);
         }
-
+    
         public async Task UpdateProduct(Product product)
         {
             var filter = Builders<Product>

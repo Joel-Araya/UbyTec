@@ -11,7 +11,7 @@ namespace MongoDB_API.Repositories
 
         public MongoDBRepository ()
         {
-            client = new MongoClient ("mongodb://127.0.0.1:27017");
+            client = new MongoClient ("mongodb://mongopf:BBGTxtTDj8ayggiUVwX8uU8nudIQm0tZUeYazbMQr6L68hg8MJk7btf50ahR0V1tQ3EDfW2NZC0lACDbyc02Yw==@mongopf.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@mongopf@");
 
             db = client.GetDatabase("Inventory");
         }
@@ -25,9 +25,9 @@ namespace MongoDB_API.Repositories
 
         public Feedback_Rep()
         {
-            client = new MongoClient("mongodb://127.0.0.1:27017");
+            client = new MongoClient("mongodb://mongopf:BBGTxtTDj8ayggiUVwX8uU8nudIQm0tZUeYazbMQr6L68hg8MJk7btf50ahR0V1tQ3EDfW2NZC0lACDbyc02Yw==@mongopf.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@mongopf@");
 
-            db = client.GetDatabase("Feedback");
+            db = client.GetDatabase("Inventory");
         }
 
     }

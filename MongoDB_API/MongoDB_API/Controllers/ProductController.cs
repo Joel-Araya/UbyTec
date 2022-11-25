@@ -46,10 +46,13 @@ namespace MongoDB_API.Controllers
                 ModelState.AddModelError("Name", "The product shouldn't be empty");
 
             }
-            product.Id = new ObjectId(id);
+            product.Id = id;
             await db.UpdateProduct(product);
             return Created("Created", true);
         }
+       
+
+ 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct (string id)

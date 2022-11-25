@@ -16,7 +16,7 @@ namespace MongoDB_API.Repositories
         }
         public async Task DeleteFeedback(string id)
         {
-            var filter = Builders<Feedback>.Filter.Eq(s => s.Id, new ObjectId(id));
+            var filter = Builders<Feedback>.Filter.Eq(s => s.Id, id);
             await Collection.DeleteOneAsync(filter);
         }
 

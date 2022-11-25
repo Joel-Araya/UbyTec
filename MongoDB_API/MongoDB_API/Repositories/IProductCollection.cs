@@ -11,5 +11,7 @@ namespace MongoDB_API.Repositories
 
         Task<List<Product>> GetAllProducts();
         Task<Product> GetProductById(string id);
+
+        
     }
 }

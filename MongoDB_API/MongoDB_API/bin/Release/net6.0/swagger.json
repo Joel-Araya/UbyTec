@@ -219,7 +219,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/ObjectId"
+          "type": "string"
         },
         "name": {
           "type": "string"
@@ -235,37 +235,11 @@
         }
       }
     },
-    "ObjectId": {
-      "type": "object",
-      "properties": {
-        "timestamp": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "machine": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "pid": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "increment": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "creationTime": {
-          "format": "date-time",
-          "type": "string",
-          "readOnly": true
-        }
-      }
-    },
     "Product": {
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/ObjectId"
+          "type": "string"
         },
         "name": {
           "type": "string"
@@ -274,9 +248,9 @@
           "format": "int32",
           "type": "integer"
         },
-        "expiryDate": {
-          "format": "date-time",
-          "type": "string"
+        "cantidad": {
+          "format": "int32",
+          "type": "integer"
         },
         "category": {
           "type": "string"
