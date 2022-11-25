@@ -66,7 +66,7 @@ create table producto(
 	precio int not NULL,
 	
 	/*Hay que buscar cómo poner una foto*/
-	foto varchar(50)
+	foto varchar(250)
 );
 
 

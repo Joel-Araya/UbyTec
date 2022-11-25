@@ -8,10 +8,20 @@ using System.Text.RegularExpressions;
 
 namespace UbyTecAPI
 {
+    
     public class EmailPasswordManager
     {
+        /// <summary>
+        /// Contructor de la clase
+        /// </summary>
         public EmailPasswordManager() { }
 
+        /// <summary>
+        /// Función que se encarga de enviar un email con la contraseña generada por UbyTec
+        /// </summary>
+        /// <param name="emailToSend"></param>
+        /// <param name="newPassword"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void EmailSend(string emailToSend, string newPassword) 
         {
             if (IsValidEmail(emailToSend) is false) throw new ArgumentException("No se ha ingresado una dirección de email válida") ;
@@ -33,10 +43,6 @@ namespace UbyTecAPI
                 email.IsBodyHtml= false;
                 cliente.Send(email);
 
-                /*Attachment adjunto = new Attachment("EmailPasswordManager.cs", MediaTypeNames.Application.Rtf);
-                email.Attachments.Add(adjunto);
-                cliente.Send(email);*/
-
             }
             catch (Exception ex) 
             {
@@ -45,7 +51,10 @@ namespace UbyTecAPI
         }
 
 
-
+        /// <summary>
+        /// Genera una contraseña aleatoria
+        /// </summary>
+        /// <returns> contraseniaAleatoria</returns>
         public string GeneratePassword() 
         {
             Random rdn = new Random();
@@ -59,28 +68,26 @@ namespace UbyTecAPI
                 letra = caracteres[rdn.Next(longitud)];
                 contraseniaAleatoria += letra.ToString();
             }
-            //La contraseña es: r%CAdeZ07l
             return contraseniaAleatoria;
         }
 
+        /// <summary>
+        /// Valida que el email ingresado cumpla con la estructura que debe llevar un correo electrónico
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
 
             try
             {
-                // Normalize the domain
                 email = Regex.Replace(email, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                // Examines the domain part of the email and normalizes it.
                 string DomainMapper(Match match)
                 {
-                    // Use IdnMapping class to convert Unicode domain names.
                     var idn = new IdnMapping();
-
-                    // Pull out and process domain name (throws ArgumentException on invalid)
                     string domainName = idn.GetAscii(match.Groups[2].Value);
-
                     return match.Groups[1].Value + domainName;
                 }
             }
@@ -92,7 +99,6 @@ namespace UbyTecAPI
             {
                 return false;
             }
-
             try
             {
                 return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
