@@ -55,6 +55,7 @@ app.UseHttpsRedirection();
 
 var empleadosItems = app.MapGroup("/Empleados");
 
+// Método post  para crear un empleado
 empleadosItems.MapPost("/", async (Empleado e, UbyTecDb db) =>
 {
     db.empleado.Add(e);
@@ -117,6 +118,7 @@ empleadosItems.MapDelete("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 // ========================================================= Métodos CRUD para Cliente =========================================================
 var clientesItems = app.MapGroup("/Clientes");
 
+// Método post  para crear un cliente
 clientesItems.MapPost("/", async (Cliente c, UbyTecDb db) =>
 {
     db.cliente.Add(c);
@@ -158,7 +160,7 @@ clientesItems.MapPut("/{cedula:int}", async (int cedula, Cliente c, UbyTecDb db)
     await db.SaveChangesAsync();
     return Results.Ok(cliente);
 });
-
+// Método delete para crear un telefono para un administrador
 clientesItems.MapDelete("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     var cliente = await db.cliente.FindAsync(cedula);
@@ -240,6 +242,7 @@ aministradoresAfiliadosItems.MapDelete("/{usuario}", async (string? usuario, Uby
 // ========================================================= Métodos CRUD para Comercio Afiliado =========================================================
 var comerciosAfiliadosItems = app.MapGroup("/Comercios_Afiliados");
 
+// Método post  para crear un comercio afiliado
 comerciosAfiliadosItems.MapPost("/", async (ComercioAfiliado c, UbyTecDb db) =>
 {
     db.comercio_afiliado.Add(c);
@@ -298,13 +301,38 @@ comerciosAfiliadosItems.MapPut("/{cedula:int}", async (int cedula, ComercioAfili
 });
 
 //Pone el estado del comercio en Aceptado o Rechazado
-comerciosAfiliadosItems.MapPut("/{cedula:int}/{estado}", async (int cedula, string? estado, UbyTecDb db) =>
+comerciosAfiliadosItems.MapPut("/{cedula:int}/Aceptado", async (int cedula, string? estado, UbyTecDb db) =>
 {
     if (estado.Equals("Aceptado") == false && estado.Equals("Rechazado") == false) return Results.BadRequest();
     var comercio_afiliado = await db.comercio_afiliado.FindAsync(cedula);
     if (comercio_afiliado is null) return Results.NotFound();
 
     comercio_afiliado.estado =  estado; //"Aceptado" o "Rechazado"
+
+    await db.SaveChangesAsync();
+    return Results.Ok(comercio_afiliado);
+});
+
+
+//Pone el estado del comercio en Aceptado
+comerciosAfiliadosItems.MapPut("/{cedula:int}/Aceptado", async (int cedula, UbyTecDb db) =>
+{
+    var comercio_afiliado = await db.comercio_afiliado.FindAsync(cedula);
+    if (comercio_afiliado is null) return Results.NotFound();
+
+    comercio_afiliado.estado = "Aceptado";
+
+    await db.SaveChangesAsync();
+    return Results.Ok(comercio_afiliado);
+});
+
+//Pone el estado del comercio en Rechazado
+comerciosAfiliadosItems.MapPut("/{cedula:int}/Rechazado", async (int cedula, UbyTecDb db) =>
+{
+    var comercio_afiliado = await db.comercio_afiliado.FindAsync(cedula);
+    if (comercio_afiliado is null) return Results.NotFound();
+
+    comercio_afiliado.estado = "Rechazado";
 
     await db.SaveChangesAsync();
     return Results.Ok(comercio_afiliado);
@@ -329,10 +357,10 @@ comerciosAfiliadosItems.MapDelete("/{cedula:int}", async (int cedula, UbyTecDb d
     return Results.NoContent();
 });
 
-
 // ========================================================= Métodos CRUD para Pedido =========================================================
 var pedidosItems = app.MapGroup("/Pedidos");
 
+// Método post  para crear un pedido
 pedidosItems.MapPost("/", async (Pedido p, UbyTecDb db) =>
 {
     db.pedido.Add(p);
@@ -352,6 +380,8 @@ pedidosItems.MapGet("/{comprobante:int}", async (int comprobante, UbyTecDb db) =
 });*/
 
 pedidosItems.MapGet("", async (UbyTecDb db) => await db.pedido.ToListAsync());
+
+pedidosItems.MapGet("/Preparando", async (UbyTecDb db) => { return db.pedido.Where(x => x.estado.Equals("Preparando"));});
 
 pedidosItems.MapPut("/{comprobante:int}", async (int comprobante, Pedido p, UbyTecDb db) =>
 {
@@ -439,6 +469,7 @@ pedidosItems.MapDelete("/{comprobante:int}", async (int comprobante, UbyTecDb db
 // ========================================================= Métodos CRUD para Productos =========================================================
 var productosItems = app.MapGroup("/Productos");
 
+// Método post  para crear un producto
 productosItems.MapPost("/", async (Producto p, UbyTecDb db) =>
 {
     db.producto.Add(p);
@@ -493,6 +524,7 @@ productosItems.MapDelete("/{nombre}", async (string? nombre, UbyTecDb db) =>
 
 var productosPedidosItems = app.MapGroup("/ProductosPedidos");
 
+// Método post  para crear un Producto de un pedido
 productosPedidosItems.MapPost("/", async (ProductoPedido p, UbyTecDb db) =>
 {
     db.producto_pedido.Add(p);
@@ -539,6 +571,7 @@ productosPedidosItems.MapDelete("/{comprobante:int}/{pr_nombre}/{co_cedula:int}"
 // ========================================================= Métodos CRUD para Repartidor =========================================================
 var repartidorItems = app.MapGroup("/Repartidores");
 
+// Método post  para crear un Repartidor
 repartidorItems.MapPost("/", async (Repartidor r, UbyTecDb db) =>
 {
     EmailPasswordManager managerEmail = new EmailPasswordManager();
@@ -602,7 +635,7 @@ repartidorItems.MapDelete("/{usuario}", async (string? usuario, UbyTecDb db) =>
 
 // ========================================================= Métodos CRUD para Telefono Admin =========================================================
 var telefonosAdminItems = app.MapGroup("/Telefonos_Admin");
-
+// Método post  para crear un telefono para un administrador afiliado
 telefonosAdminItems.MapPost("/", async (TelefonoAdmin t, UbyTecDb db) =>
 {
     db.telefono_admin.Add(t);
@@ -618,11 +651,8 @@ telefonosAdminItems.MapGet("/{a_usuario}/{telefono:int}", async (string a_usuari
 // Filtrado por usuario 
 telefonosAdminItems.MapGet("/{a_usuario}", async (string a_usuario, UbyTecDb db) =>
 {
-
     if ((db.telefono_admin.Any(x => x.a_usuario == a_usuario) || (db.administrador_afiliado.Any(x => x.usuario == a_usuario))) is false) return Results.NotFound();
-
     var filtroUsuario = db.telefono_admin.Select(x => new { x.telefono, x.a_usuario }).Where(x => x.a_usuario == a_usuario).ToList();
-
     return Results.Ok(filtroUsuario);
 });
 
@@ -634,12 +664,10 @@ telefonosAdminItems.MapPut("/{a_usuario}/{telefono:int}", async (string a_usuari
     var telefonoAdmin = await db.telefono_admin.FindAsync(telefono, a_usuario);
     if (telefonoAdmin is null) return Results.NotFound();
 
-
     telefonoAdmin.a_usuario = t.a_usuario;
 
     await db.SaveChangesAsync();
     return Results.Ok(telefonoAdmin);
-
 });
 
 telefonosAdminItems.MapDelete("/{a_usuario}/{telefono:int}", async (string a_usuario, int telefono, UbyTecDb db) =>
@@ -653,7 +681,7 @@ telefonosAdminItems.MapDelete("/{a_usuario}/{telefono:int}", async (string a_usu
 
 // ========================================================= Métodos CRUD para Telefono Rep =========================================================
 var telefonosRepItems = app.MapGroup("/Telefonos_Rep");
-
+// Método post  para crear un telefono para un repartidor
 telefonosRepItems.MapPost("/", async (TelefonoRep t, UbyTecDb db) =>
 {
     db.telefono_rep.Add(t);
@@ -690,6 +718,7 @@ telefonosRepItems.MapPut("/{re_usuario}/{telefono:int}", async (string re_usuari
 
 });
 
+// Método delete para eliminar un telefono para un repartidor
 telefonosRepItems.MapDelete("/{re_usuario}/{telefono:int}", async (string re_usuario, int telefono, UbyTecDb db) =>
 {
     var telefonoRep = await db.telefono_rep.FindAsync(telefono, re_usuario);
@@ -702,7 +731,7 @@ telefonosRepItems.MapDelete("/{re_usuario}/{telefono:int}", async (string re_usu
 
 // ========================================================= Métodos CRUD para Telefono Com =========================================================
 var telefonosComItems = app.MapGroup("/Telefonos_Com");
-
+// Método post  para crear un telefono para un comercio afiliado
 telefonosComItems.MapPost("/", async (TelefonoCom t, UbyTecDb db) =>
 {
     db.telefono_com.Add(t);
@@ -739,7 +768,7 @@ telefonosComItems.MapPut("/{co_cedula}/{telefono:int}", async (int co_cedula, in
     return Results.Ok(telefonoCom);
 
 });
-
+// Método delete para eliminar un telefono para un comercio
 telefonosComItems.MapDelete("/{co_cedula}/{telefono:int}", async (int co_cedula, int telefono, UbyTecDb db) =>
 {
     var telefonoRep = await db.telefono_com.FindAsync(telefono, co_cedula);
@@ -752,6 +781,7 @@ telefonosComItems.MapDelete("/{co_cedula}/{telefono:int}", async (int co_cedula,
 // ========================================================= Métodos CRUD para Telefono Emp =========================================================
 var telefonosEmpItems = app.MapGroup("/Telefonos_Emp");
 
+// Método post para crear un telefono para un empleado
 telefonosEmpItems.MapPost("/", async (TelefonoEmp t, UbyTecDb db) =>
 {
     db.telefono_emp.Add(t);
@@ -774,6 +804,7 @@ telefonosEmpItems.MapGet("/{e_cedula:int}", async (int e_cedula, UbyTecDb db) =>
 
 telefonosEmpItems.MapGet("", async (UbyTecDb db) => await db.telefono_emp.ToListAsync());
 
+
 telefonosEmpItems.MapPut("/{e_cedula:int}/{telefono:int}", async (int e_cedula, int telefono, TelefonoEmp t, UbyTecDb db) =>
 {
     if (t.telefono != telefono) return Results.BadRequest();
@@ -788,6 +819,7 @@ telefonosEmpItems.MapPut("/{e_cedula:int}/{telefono:int}", async (int e_cedula, 
 
 });
 
+// Método delete para eliminar un telefono para un empleado
 telefonosEmpItems.MapDelete("/{e_cedula:int}/{telefono:int}", async (int e_cedula, int telefono, UbyTecDb db) =>
 {
     var telefonoEmp = await db.telefono_emp.FindAsync(telefono, e_cedula);
