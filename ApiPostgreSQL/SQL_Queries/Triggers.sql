@@ -8,7 +8,8 @@ begin
 	
 	else
 		Delete from telefono_rep where re_usuario=old.usuario;
-		Delete from repartidor where usuario=old.usuario;
+		Update pedido set re_usuario=NULL where re_usuario=old.usuario;
+		return old;
 	end if;
 end
 $$
@@ -16,6 +17,11 @@ Language plpgsql;
 
 
 create or replace trigger deleteRepartidor before Delete on repartidor for each row execute procedure deleteRepartidor();
+
+select * from repartidor; 
+select * from pedido;
+
+delete from repartidor where usuario='Rep02';
 
 /*Trigger que se encarga de poner en espera a todo comercio afiliado nuevo para que el empleado de ubytec lo verifique*/
 create or replace function en_espera_comercio_afiliado() returns Trigger

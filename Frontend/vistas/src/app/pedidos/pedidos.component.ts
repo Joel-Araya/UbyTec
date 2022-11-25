@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PedidosService } from '../servicios/pedidos.service';
+import { Pedidos } from './pedidos.model';
 
 @Component({
   selector: 'app-pedidos',
@@ -7,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidosComponent implements OnInit {
 
+  pedidos:Pedidos[]=[];
 
-  
-  constructor() { }
+  constructor(private api:PedidosService, private router:Router) { }
 
   ngOnInit(): void {
+    this.api.getPedidos().subscribe(data =>{
+      this.pedidos = data;
+    })
+  }
+
+  editarPedido(usuario: any){
+    /* console.log(usuario) */
+    this.router.navigate(['editarPedido', usuario]);
+  }
+
+  nuevoPedido(){
+    this.router.navigate(['insertarPedido']);
   }
 }

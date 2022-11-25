@@ -35,7 +35,9 @@ export class AdminComercioAfiService {
       }),
       body: form
     }
-    return this.http.delete<datosAdminAfi>(direccion, options);
+    console.log(usuario);
+    console.log(direccion);
+    return this.http.delete<datosAdminAfi>(direccion);
   }
 
   postAdmin(form:datosAdminAfi):Observable<datosAdminAfi>{

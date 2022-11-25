@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 
@@ -39,6 +40,9 @@ import { EditarAdminComercioAfiComponent } from './editar-admin-comercio-afi/edi
 import { EditarProductosComponent } from './editar-productos/editar-productos.component';
 import { InsertarProductosComponent } from './insertar-productos/insertar-productos.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
+import { InsertarPedidoComponent } from './insertar-pedido/insertar-pedido.component';
+import { EditarPedidoComponent } from './editar-pedido/editar-pedido.component';
+import { AsignarPedidoComponent } from './asignar-pedido/asignar-pedido.component';
 
 const appRoutes:Routes=[
   {path: '', component:LoginComponent},
@@ -71,6 +75,10 @@ const appRoutes:Routes=[
   {path: 'insertarAdminComerAfi', component:InsertarAdminComercioAfiComponent},
   {path: 'editarProducto/:nombre', component:EditarProductosComponent},
   {path: 'insertarProducto', component:InsertarProductosComponent},
+  {path: 'editarPedido/:comprobante', component:EditarPedidoComponent},
+  {path: 'insertarPedido', component:InsertarPedidoComponent},
+  {path: 'asignarPedido', component:AsignarPedidoComponent},
+
 
 ]
 
@@ -106,6 +114,9 @@ const appRoutes:Routes=[
     EditarProductosComponent,
     InsertarProductosComponent,
     EditarClienteComponent,
+    InsertarPedidoComponent,
+    EditarPedidoComponent,
+
 
   ],
   imports: [
@@ -114,7 +125,8 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    CommonModule
     
   ],
   providers: [],

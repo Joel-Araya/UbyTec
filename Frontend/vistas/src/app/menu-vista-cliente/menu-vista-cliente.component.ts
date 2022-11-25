@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ComercioCercanoService } from '../servicios/comercio-cercano.service';
+import { comerciosCercanos } from './menu.model';
 
 @Component({
   selector: 'app-menu-vista-cliente',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuVistaClienteComponent implements OnInit {
 
-  constructor() { }
+  comercios:comerciosCercanos[]=[];
+
+  constructor(private api:ComercioCercanoService, private router:Router) { }
 
   ngOnInit(): void {
+    this.api.getComercioAfiliados().subscribe(data =>{
+      this.comercios = data;
+    })
+  }
+
+  editarRepartidor(usuario: any){
+    /* console.log(usuario) */
+    this.router.navigate(['editarRepartidor', usuario]);
+  }
+
+  nuevoRepartidor(){
+    this.router.navigate(['insertarRepartidor']);
   }
 
 }

@@ -63,17 +63,16 @@ export class EditarAfiliadoComponent implements OnInit {
     });
   }
 
-  eliminar(){
-    /* let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
-    let datos:datosAdmin = this.editarForm.value;
-    this.api.deleteAdministrador(datos,repartidor_usuario).subscribe(data=>{
+  eliminar(form:datosAfiliado){
+    let repartidor_usuario = this.activeroute.snapshot.paramMap.get('cedula');
+    let datos:datosAfiliado = this.editarForm.value;
+    this.api.deleteAfiliado(form,repartidor_usuario).subscribe(data=>{
       console.log(data);
     });
-    console.log(datos); */
+    console.log(datos);
   }
 
   salir(){
     this.router.navigate(['afiliados']);
   }
-
 }

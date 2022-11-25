@@ -54,6 +54,9 @@ add column estado varchar(50);
 alter table comercio_afiliado
 alter column estado set not NULL;
 
+alter table comercio_afiliado
+drop column password;
+
 select * from comercio_afiliado;
 
 create table producto(
@@ -145,16 +148,17 @@ create table telefono_com(
 
 
 create table producto_pedido (
-	comprobante int not NULL,
-	pr_nombre varchar (20) not NULL,
-	co_cedula int not NULL,
-	re_usuario varchar(20),
+	pe_comprobante int not NULL references pedido(comprobante),
+	pr_nombre varchar (20) not NULL references producto(nombre),
+	co_cedula int not NULL references comercio_afiliado(cedula),
+	re_usuario varchar(20) references repartidor(usuario),
 	cantidad int,
-	PRIMARY KEY (comprobante, pr_nombre, co_cedula)
+	PRIMARY KEY (pe_comprobante, pr_nombre, co_cedula)
 );
 
 
 
+select * from producto_pedido;
 
 
 

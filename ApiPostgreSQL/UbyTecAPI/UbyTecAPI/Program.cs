@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Data;
+using System.Runtime.CompilerServices;
+using System.Text;
 using UbyTecAPI;
 using UbyTecAPI.Data;
 using UbyTecAPI.Models;
@@ -65,12 +67,10 @@ empleadosItems.MapGet("/{cedula:int}", async (int cedula, UbyTecDb db) =>
     return await db.empleado.FindAsync(cedula) is Empleado e ? Results.Ok(e) : Results.NotFound();
 });
 
-empleadosItems.MapGet("/Login/{cedula:int}/{password}", async (int cedula, string? password, UbyTecDb db) =>
+empleadosItems.MapGet("/Login/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     var empleadoLogin = await db.empleado.FindAsync(cedula);
-    if (empleadoLogin is null) return Results.NotFound();
-    if(password == null) return Results.NotFound();
-    if (empleadoLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    if (empleadoLogin is null) return Results.Ok("El usuario ingresado no existe");
     return Results.Ok(empleadoLogin);
 });
 
@@ -130,12 +130,10 @@ clientesItems.MapGet("/{cedula:int}", async (int cedula, UbyTecDb db) =>
 });
 
 //Login Clientes
-clientesItems.MapGet("/Login/{cedula:int}/{password}", async (int cedula, string? password, UbyTecDb db) =>
+clientesItems.MapGet("/Login/{cedula:int}", async (int cedula, UbyTecDb db) =>
 {
     var clienteLogin = await db.cliente.FindAsync(cedula);
-    if (clienteLogin is null) return Results.NotFound();
-    if (password == null) return Results.NotFound();
-    if (clienteLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    if (clienteLogin is null) return Results.Ok("El usuario ingresado no existe");
     return Results.Ok(clienteLogin);
 });
 
@@ -192,12 +190,10 @@ aministradoresAfiliadosItems.MapGet("/{usuario}", async (string? usuario, UbyTec
 });
 
 // Login administrador afiliado
-aministradoresAfiliadosItems.MapGet("/Login/{usuario}/{password}", async (string? usuario, string? password, UbyTecDb db) =>
+aministradoresAfiliadosItems.MapGet("/Login/{usuario}", async (string? usuario, UbyTecDb db) =>
 {
     var adminAfiliadoLogin = await db.administrador_afiliado.FindAsync(usuario);
-    if (adminAfiliadoLogin is null) return Results.NotFound();
-    if (password == null) return Results.NotFound();
-    if (adminAfiliadoLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    if (adminAfiliadoLogin is null) return Results.Ok("El usuario ingresado no existe");
     return Results.Ok(adminAfiliadoLogin);
 });
 
@@ -349,6 +345,12 @@ pedidosItems.MapGet("/{comprobante:int}", async (int comprobante, UbyTecDb db) =
     return await db.pedido.FindAsync(comprobante) is Pedido p ? Results.Ok(p) : Results.NotFound();
 });
 
+/*pedidosItems.MapGet("/{co_cedula:int}", async (int co_cedula, UbyTecDb db) =>
+{
+
+    return await db.pedido.FindAsync(comprobante) is Pedido p ? Results.Ok(p) : Results.NotFound();
+});*/
+
 pedidosItems.MapGet("", async (UbyTecDb db) => await db.pedido.ToListAsync());
 
 pedidosItems.MapPut("/{comprobante:int}", async (int comprobante, Pedido p, UbyTecDb db) =>
@@ -458,6 +460,9 @@ productosItems.MapGet("/{co_cedula:int}", async (int co_cedula, UbyTecDb db) =>
     return productosComercio;
 });
 
+
+
+
 productosItems.MapPut("/{nombre}", async (string? nombre, Producto p, UbyTecDb db) =>
 {
     if (p.nombre != nombre) return Results.BadRequest();
@@ -492,27 +497,28 @@ productosPedidosItems.MapPost("/", async (ProductoPedido p, UbyTecDb db) =>
 {
     db.producto_pedido.Add(p);
     await db.SaveChangesAsync();
-    return Results.Created($"producto_pedido/{p.comprobante}", p);
+    return Results.Created($"producto_pedido/{p.pe_comprobante}", p);
 });
 
-productosPedidosItems.MapGet("/{comprobante:int}", async (int comprobante, UbyTecDb db) =>
+productosPedidosItems.MapGet("/{pe_comprobante:int}", async (int pe_comprobante, UbyTecDb db) =>
 {
-    var productoPedido= db.producto_pedido.Where(x => x.comprobante.Equals(comprobante));
+    var productoPedido= db.producto_pedido.Where(x => x.pe_comprobante.Equals(pe_comprobante));
     return productoPedido;
 });
+
 
 productosPedidosItems.MapGet("", async (UbyTecDb db) => await db.producto_pedido.ToListAsync());
 
 productosPedidosItems.MapPut("/{comprobante}", async (int comprobante, ProductoPedido p, UbyTecDb db) =>
 {
-    if (p.comprobante != comprobante) return Results.BadRequest();
+    if (p.pe_comprobante != comprobante) return Results.BadRequest();
     var productoPedido = await db.producto_pedido.FindAsync(comprobante, p.pr_nombre,p.co_cedula);
     if (productoPedido is null) return Results.NotFound();
 
     
     productoPedido.pr_nombre= p.pr_nombre;
     productoPedido.co_cedula = p.co_cedula; //Llave foránea //Revisar si esto se debe poder cambiar
-    productoPedido.comprobante= comprobante;
+    productoPedido.pe_comprobante = comprobante;
     productoPedido.re_usuario= p.re_usuario;
     productoPedido.cantidad= p.cantidad;
 
@@ -553,12 +559,10 @@ repartidorItems.MapGet("/{usuario}", async (string? usuario, UbyTecDb db) =>
 
 
 // Login repartidor
-repartidorItems.MapGet("/Login/{usuario}/{password}", async (string? usuario, string? password, UbyTecDb db) =>
+repartidorItems.MapGet("/Login/{usuario}", async (string? usuario, UbyTecDb db) =>
 {
     var repartidorLogin = await db.repartidor.FindAsync(usuario);
-    if (repartidorLogin is null) return Results.NotFound();
-    if (password == null) return Results.NotFound();
-    if (repartidorLogin.password != password) return Results.BadRequest("La contraseña ingresada es incorrecta");
+    if (repartidorLogin is null) return Results.Ok("El usuario ingresado no existe");
     return Results.Ok(repartidorLogin);
 });
 
@@ -585,6 +589,8 @@ repartidorItems.MapPut("/{usuario}", async (string? usuario, Repartidor r, UbyTe
 
 repartidorItems.MapDelete("/{usuario}", async (string? usuario, UbyTecDb db) =>
 {
+
+    Console.WriteLine("Entró al api");
     var repartidor = await db.repartidor.FindAsync(usuario);
     if (repartidor is null) return Results.NotFound();
     db.repartidor.Remove(repartidor);
@@ -790,6 +796,8 @@ telefonosEmpItems.MapDelete("/{e_cedula:int}/{telefono:int}", async (int e_cedul
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
+
+
 
 
 

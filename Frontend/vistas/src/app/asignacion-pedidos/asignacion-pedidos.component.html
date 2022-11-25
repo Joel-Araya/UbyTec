@@ -1,2 +1,48 @@
-<p>asignacion-pedidos works!</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">Asignación de Pedidos</h1>
+        <div class="d-flex">
+        </div>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Comprobante</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Cédula cliente</th>
+          <th scope="col">Usuario repartidor</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Cantón</th>
+          <th scope="col">Distrito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asignado of asignaciones;let i= index" (click)="AsignarPedido(asignado.comprobante)">
+          <th scope="row">{{i+1}}</th>
+          <td>{{asignado.comprobante}}</td>
+          <td>{{asignado.estado}}</td>
+          <td>{{asignado.c_cedula}}</td>
+          <td>{{asignado.re_usuario}}</td>
+          <td>{{asignado.provincia}}</td>
+          <td>{{asignado.canton}}</td>
+          <td>{{asignado.distrito}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
 

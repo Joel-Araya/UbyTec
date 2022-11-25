@@ -35,7 +35,9 @@ export class ProductosService {
       }),
       body: form
     }
-    return this.http.delete<datosProducto>(direccion, options);
+    console.log(usuario);
+    console.log(direccion);
+    return this.http.delete<datosProducto>(direccion);
   }
 
   postProducto(form:datosProducto):Observable<datosProducto>{

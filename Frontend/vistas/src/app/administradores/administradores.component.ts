@@ -13,6 +13,11 @@ export class AdministradoresComponent implements OnInit {
 
   administradores:Administrador[]=[];
 
+  /**
+   * Método constructor, se le inyecta el servicio de administradores
+   * @param api 
+   * @param router 
+   */
   constructor(private api:AdminsService, private router:Router) { }
 
   ngOnInit(): void {
@@ -21,11 +26,17 @@ export class AdministradoresComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que nos dirige al usuario que se desea editar
+   */
   editarAdmin(usuario: any){
     /* console.log(usuario) */
     this.router.navigate(['editarAdmin', usuario]);
   }
 
+  /**
+   * Método que nos dirige a donde se crea un nuevo usuario
+   */
   nuevoAdmin(){
     this.router.navigate(['insertarAdmin']);
   }
