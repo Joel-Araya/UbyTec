@@ -11,6 +11,8 @@ import { Repartidor } from '../repartidores/repartidores.model';
 })
 export class RepartidoresService {
 
+  private url:string="https://ubytecapi20221119172130.azurewebsites.net/repartidores"
+
   constructor(private http:HttpClient) { }
 
   getRepartidores():  Observable<Repartidor[]>{
@@ -36,7 +38,10 @@ export class RepartidoresService {
       }),
       body: form.usuario
     }
-    return this.http.delete<Datos>(direccion, options);
+    console.log(usuario);
+    console.log(direccion);
+    return this.http.delete<Datos>(direccion);
   }
+
 
 }

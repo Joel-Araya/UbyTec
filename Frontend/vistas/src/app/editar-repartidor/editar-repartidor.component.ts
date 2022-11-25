@@ -15,7 +15,7 @@ import { Datos } from './datos.interface';
 export class EditarRepartidorComponent implements OnInit {
   @Input() usuario?: Datos
   @Output() datosActualizados = new EventEmitter<Datos[]>();
-
+  repartidores:Repartidor[]=[];
   constructor(private activeroute:ActivatedRoute, private router:Router, private api:RepartidoresService) { }
 ;
   datosRepartidor!:Datos;
@@ -56,13 +56,17 @@ export class EditarRepartidorComponent implements OnInit {
     });
   }
 
-  eliminar(){
+  eliminar(form:Datos){
     let repartidor_usuario = this.activeroute.snapshot.paramMap.get('usuario');
     let datos:Datos = this.editarForm.value;
-    this.api.deleteRepartidor(datos,repartidor_usuario).subscribe(data=>{
+    this.api.deleteRepartidor(form,repartidor_usuario).subscribe(data=>{
       console.log(data);
     });
   }
+
+ 
+
+
 
   prueba(){
     if(this.usuario?.usuario == this.editarForm.value.usuario){

@@ -28,6 +28,8 @@ export class RepartidoresComponent implements OnInit {
   nuevoRepartidor(){
     this.router.navigate(['insertarRepartidor']);
   }
+
+ 
   
 
 }

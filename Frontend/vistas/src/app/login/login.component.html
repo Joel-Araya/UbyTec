@@ -47,21 +47,20 @@
                                 <h4 class="mt-1 mb-5 pb-1">Somos UbyTEC</h4>
                               </div>
               
-                              <form>
+                              <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
               
                                 <div class="form-outline mb-4">
-                                  <input type="email" id="form2Example11" class="form-control"
-                                    placeholder="" />
+                                  <input type="email" id="form2Example11" class="form-control" formControlName="usuario" />
                                   <label class="form-label" for="form2Example11">Correo</label>
                                 </div>
               
                                 <div class="form-outline mb-4">
-                                  <input type="password" id="form2Example22" class="form-control" />
+                                  <input type="password" id="form2Example22" class="form-control" formControlName = "password" />
                                   <label class="form-label" for="form2Example22">Contraseña</label>
                                 </div>
               
                                 <div class="text-center pt-1 mb-5 pb-1">
-                                  <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Iniciar Sesión</button>
+                                  <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar Sesión</button>
                                 </div>
               
                                 <div class="d-flex align-items-center justify-content-center pb-4">
